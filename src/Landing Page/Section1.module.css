@@ -1,3 +1,4 @@
+/* General Styles */
 .fadeIn, .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -19,31 +20,31 @@
   height: 100vh;
   overflow: hidden;
   scroll-behavior: smooth;
-  margin-top: -76vh; 
+  margin-top: 0;
+  position: relative;
 }
 
 .heroContent {
-  margin-left: 9%;
   display: flex;
   flex-direction: column;
   position: relative;
   min-height: 686px;
-  width: 91%;
+  width: 100%;
   color: #fff;
-  padding: 35px 80px 119px;
+  padding: 25px 80px 119px;
   overflow: visible;
 }
 
-
 .backgroundImage {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  height: 95vh;
+  height: 100vh;
   width: 100%;
+  right: 0;
   object-fit: cover;
   object-position: center;
+  z-index: -1;
 }
-
 
 .navigation {
   position: relative;
@@ -51,7 +52,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  margin-left: 5px;
+  margin-left: 50px;
 }
 
 .navLinks {
@@ -77,9 +78,9 @@
   border-radius: 40px;
   padding: 5px 25px;
   font: 700 17px 'Montserrat', sans-serif;
-  border: 2px solid black;
-  background: black;
-  color: white;
+  border: 2px solid grey;
+  background: rgb(255, 255, 255);
+  color: rgb(32, 32, 32);
   transition: border 0.3s, color 0.3s;
 }
 
@@ -90,17 +91,19 @@
   cursor: pointer;
 }
 
+/* Content Styling */
 .content {
   align-items: center;
-  margin-left: 7%;
+  width: 100%;
   z-index: 1;
 }
 
 .heroTitle {
   position: relative;
   align-self: center;
-  margin-top: 25vh;
-  font: 700 4.2rem 'Public Sans', sans-serif;
+  margin-top: 22vh;
+  font: 700 5rem 'Public Sans', sans-serif;
+  text-align: center;
 }
 
 .titleDescription {
@@ -108,7 +111,8 @@
   line-height: 1.5;
   text-align: justify;
   color: rgba(255, 255, 255, 0.85);
-  margin-top: 30px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .typing-container {
@@ -123,23 +127,20 @@
 .ctaContainer {
   display: flex;
   justify-content: space-between;
-  margin: 70px 100px 0px 0;
-  margin-left: 950px;
+  margin: 70px auto 0;
   font: 700 14px 'Montserrat', sans-serif;
   z-index: 20;
 }
 
 .ctaButton {
   text-decoration: none;
-  color:white;
+  color: white;
   border: 2px solid white;
   border-radius: 30px;
   padding: 20px 40px;
   display: inline-block;
   background-color: rgba(0, 0, 0, 0.368);
   transition: all 0.4s ease-in-out;
-  visibility: visible !important;
-  margin-top: 0px;
 }
 
 .ctaButton:hover {
@@ -147,117 +148,98 @@
   cursor: pointer;
 }
 
-.ctaIcon {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.logo {
+  position: fixed;
+  z-index: 100;
+  font-weight: 600;
+  font-size: clamp(1rem, 2vw, 2rem); /* Responsive font */
+  left: 40px;
+  top: 20px;
+  animation: floatAnimation 3s ease-in-out infinite; /* Looping animation */
+  transition: color 0.3s ease-in-out;
+}
+
+/* Floating animation */
+/* @keyframes floatAnimation {
+  0% {
+    color: rgb(0, 0, 0);
+    transform: translateY(0);
+  }
+  50% {
+    color: rgb(255, 255, 255);
+    transform: translateY(-5px); 
+  }
+  100% {
+    color: rgb(0, 0, 0);
+    transform: translateY(0);
+  }
+} */
+
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navIcon {
+  color: white;
   transition: transform 0.3s;
 }
 
-.ctaIcon:hover {
+.navIcon:hover {
   transform: scale(1.1);
 }
 
-.scrollToTop {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  cursor: pointer;
-  transition: transform 0.3s, opacity 0.3s;
-  opacity: 0.8;
-}
-
-.scrollToTop:hover {
-  transform: scale(1.1);
-  opacity: 1;
-}
-
-@media (max-width: 991px) {
-  .heroContainer {
-    height: auto;
-    margin-top: -50vh;
-  }
-
+/* Responsive Styles */
+@media (max-width: 1048px) {
   .heroContent {
     max-width: 100%;
-    padding: 20px;
     text-align: center;
   }
 
   .heroTitle {
-    max-width: 100%;
-    margin-top: 30px;
-    font-size: 3rem;
+    font-size: 4rem;
     text-align: center;
   }
 
   .titleDescription {
-    font-size: 1rem;
     text-align: center;
-    padding: 0 10px;
+    padding: 0 20px;
+    background-color: #23232328;
+    padding: 10px;
   }
 
   .ctaContainer {
     flex-direction: column;
     align-items: center;
-    margin: 30px auto 0;
   }
 
   .ctaButton {
     padding: 15px 30px;
     font-size: 1rem;
   }
-
-  .ctaIcon {
-    width: 40px;
-    height: 40px;
-  }
 }
 
 @media (max-width: 768px) {
-  .heroContainer {
-    margin-top: -30vh;
-  }
-
   .heroTitle {
     font-size: 2.5rem;
   }
 
   .titleDescription {
     font-size: 0.9rem;
-    text-align: center;
-  }
-
-  .ctaContainer {
-    flex-direction: column;
-    align-items: center;
   }
 
   .ctaButton {
     width: 80%;
-    text-align: center;
     padding: 12px 25px;
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
-  .heroContainer {
-    margin-top: -20vh;
-    height: auto;
-  }
-
-  .heroContent {
-    padding: 15px;
-  }
-
   .heroTitle {
     font-size: 2rem;
-    text-align: center;
   }
 
   .titleDescription {
@@ -269,16 +251,6 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
-  }
-
-  .navLinks {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .ctaContainer {
-    margin: 20px auto 0;
   }
 
   .ctaButton {

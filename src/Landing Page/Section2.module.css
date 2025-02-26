@@ -155,7 +155,7 @@
   margin-right: 22px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   .contentWrapper,
   .aboutContent {
     flex-direction: column;

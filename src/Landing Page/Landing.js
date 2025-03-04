@@ -50,7 +50,7 @@ const Landing = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <div class name= {styles.section1}>
-        <SideNavigation />
+        {/* <SideNavigation /> */}
         <Section1 /></div>
         <Section2/>
         <Section3/>

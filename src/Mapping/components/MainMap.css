@@ -206,3 +206,7 @@ select:focus {
 .leaflet-control-geocoder-form input {
     color: black!important;
 }
+
+.options{
+    color: var(--background-color);
+}

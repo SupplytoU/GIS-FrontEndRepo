@@ -7,152 +7,165 @@
   padding: 20px;
   margin-top: 150px;
   border-top: 2px solid black; /* Add a black border at the top */
+  width: 100%;
 }
 
-  
+/* Top section */
+.topSection {
+  display: flex;
+  width: 90%;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  aspect-ratio: 1.42;
+  object-fit: contain;
+  width: 250px;
+  max-width: 100%;
+}
+
+/* Contact items */
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: auto 0;
+}
+
+.contactIcon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 30px;
+}
+
+.contactContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.contactDescription {
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 5px;
+  word-break: break-word; /* Ensures long text breaks on small screens */
+
+}
+
+/* Divider */
+.divider {
+  width: 1px;
+  background: black;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  gap: 30px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.navLink,
+.navLink a {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+  color: rgb(38, 38, 38) !important;
+  text-decoration: none;
+}
+
+.navLink:hover,
+.navLink a:hover {
+  text-decoration: underline;
+}
+
+/* Footer Image */
+.footerImage {
+  width: 800px;
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+/* Copyright */
+.copyright {
+  color: #7e7e7e;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .divider{
+    display: none;
+  }
+  .details{
+    display: none;
+  }
   .topSection {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    gap: 20px;
-    justify-content: space-between;
-    padding-right: 150px;
-  }
-  
-  .logo {
-    aspect-ratio: 1.42;
-    object-fit: contain;
-    width: 250px;
-    max-width: 100%;
-    margin-left: 30px;
-  }
-  
-  .contactItem {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin: auto 0;
-  }
-  
-  .contactIcon {
-    aspect-ratio: 1;
-    object-fit: contain;
-    width: 30px;
-  }
-  
-  .contactContent {
-    display: flex;
     flex-direction: column;
-  }
-  
-  .contactTitle {
-    font-size: 20px;
-    font-weight: 700;
-  }
-  
-  .contactDescription {
-    font-size: 12px;
-    font-weight: 400;
-    margin-top: 5px;
-  }
-  
-  .divider {
-    aspect-ratio: 0.02;
-    object-fit: contain;
-    width: 1px;
-    align-self: stretch;
-    margin: auto 0;
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
   }
   
   .navigation {
-    display: flex;
-    width: 347px;
-    max-width: 100%;
-    gap: 30px;
-    font-size: 12px;
-    font-weight: 700;
-    margin: 4px 0 0 162px;
-  }
-  
-  .navLink, .navLink a {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    padding: 0;
-    color: rgb(38, 38, 38)!important;
-    text-decoration: none;
+    justify-content: center;
   }
 
-  .navLink:hover, .navLink a:hover{
-    text-decoration: underline;
+  .logo {
+    margin-left: 0;
   }
-  
-  .signUp {
-    flex-grow: 1;
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 15px;
+    margin-top: 50px;
   }
-  
-  .ourSolutions {
-    flex-grow: 1;
-    width: 98px;
+
+  .topSection {
+    flex-direction: column;
+    text-align: center;
   }
-  
-  .footerImage {
-    aspect-ratio: 333.33;
-    object-fit: contain;
-    width: 800px;
-    max-width: 100%;
-    margin: 10px 0 0 56px;
+
+  .logo {
+    width: 150px;
   }
-  
+
+  .contactContent {
+    text-align: center;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    gap: 15px;
+  }
+
   .copyright {
-    color: #7e7e7e;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.3px;
-    margin: 10px 0 0 46px;
+    text-align: center;
+    margin-top: 14px;
   }
-  
-  @media (max-width: 991px) {
-    .topSection {
-      max-width: 100%;
-    }
-  }
-  
-  @media (max-width: 640px) {
-    .footer {
-      align-items: center;
-      padding-bottom: 15px;
-      margin: 0 -2px -3px 10px;
-    }
-  
-    .topSection {
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-self: center;
-      margin: 0 -3px 0 -2px;
-    }
-  
-    .logo {
-      width: 184px;
-    }
-  
-    .contactContent {
-      flex-direction: row;
-      gap: 20px;
-    }
-  
-    .divider {
-      display: none;
-    }
-  
-    .navigation {
-      margin: 61px 0 0 -3px;
-    }
-  
-    .copyright {
-      margin-top: 14px;
-    }
-  }
+}

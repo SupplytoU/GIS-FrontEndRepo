@@ -121,12 +121,10 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
           className="form-sidebar-container"
           data-theme={isDark ? "dark" : "mapping"}
         >
-          <button
-            className="back-button"
-            onClick={() => navigate("/View Locations")}
-          >
-            <FaArrowLeft /> Back
-          </button>
+           <button className="back-button" onClick={() => navigate("/View Locations")}>
+                    <FaArrowLeft /> <span className="home-text">Back</span>
+                      </button>
+      
           <form className="add-location-form" onSubmit={onSubmit}>
             <h2 className="LocationTitle">Enter Location Details</h2>
             <div className="form-control">
@@ -222,9 +220,7 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
               className="btnlocation"
             />
           </form>
-          <div className="home-button" onClick={() => navigate("/")}>
-            SUPPLY2U{" "}
-          </div>
+  
         </div>
         <MapContainer
           center={[0, 38]}

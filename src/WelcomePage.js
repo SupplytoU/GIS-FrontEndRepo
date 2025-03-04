@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "./utils/axiosInstance";
 import "./WelcomePage.css";
 import welcome from './Images/Welcome.jpg';
 import Solutions from "./Dropdown/Solutions";
 import LoginIcon from "./LoggedinIcon";
-import axiosInstance from "./utils/axiosInstance";
 
 function WelcomePage() {
   const [userFirstName, setUserFirstName] = useState('User');
   const [greeting, setGreeting] = useState('');
-  const [displayedText, setDisplayedText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
- 
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -27,27 +23,6 @@ function WelcomePage() {
 
     fetchUserData();
   }, []);
-
-  useEffect(() => {
-      const handleTyping = () => {
-      if (isDeleting) {
-        setDisplayedText((prev) => prev.slice(0, -1));
-        setTypingSpeed(110);
-      } else {
-        setDisplayedText((prev) => userFirstName.slice(0, prev.length + 1));
-        setTypingSpeed(150);
-      }
-
-      if (!isDeleting && displayedText === userFirstName) {
-        setTimeout(() => setIsDeleting(true), 1000);
-      } else if (isDeleting && displayedText === '') {
-        setIsDeleting(false);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, typingSpeed, userFirstName]);
 
   useEffect(() => {
     // Determine greeting based on time of day
@@ -86,7 +61,7 @@ function WelcomePage() {
         </div>
         <h1 className="welcome-heading fade-in">
           {greeting}, <br />
-          <span className="typing-container">{displayedText}</span>
+          <span className="user-name">{userFirstName}</span>
         </h1>
         <p className="welcome-subtext fade-in">
           Ready to explore new insights and innovations in agriculture?

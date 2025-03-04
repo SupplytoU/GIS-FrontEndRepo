@@ -1,96 +1,130 @@
 .UserInquiries {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    color: #fff;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  color: #fff;
+}
+
+.InqContainer {
+  background: radial-gradient(circle, #000000 0%, #000000b9 50%, #00000023 100%);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  border-radius: 40px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.Inqheading {
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: -10px;
+}
+
+.subheading {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #ffffff;
+  margin-bottom: 1.7rem;
+}
+
+.inputRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.InqinputField {
+  flex: 1;
+  padding: 0.5rem;
+  min-width: 360px;
+  border-radius: 8px!important;
+  border: 1px solid white!important;
+  background: none;
+  color: #fff;
+  font-size: 1rem!important;
+}
+
+.messageField {
+  width: 100%;
+  height: 100px;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid white;
+  background: none;
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.submitButton {
+  background: linear-gradient(to right, #004D00 0%, #DDFFE3 100%);
+  border: none;
+  color: black;
+  padding: 0.5rem 2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.submitButton:hover {
+  background: linear-gradient(to left, #004D00 0%, #DDFFE3 100%);
+  box-shadow: 0px 4px 10px rgba(201, 239, 208, 0.6);
+  font-size: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.error {
+  color: red;
+  font-size: 10px;
+}
+
+@media (max-width: 768px) {
   .InqContainer {
-    background: radial-gradient(circle, #000000 0%,#000000b9 50%, #00000023 100%);
-    backdrop-filter: blur(8px);
-    padding: 2rem;
-    border-radius: 40px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-    margin-top: 150px;
+      padding: 1.5rem;
+      margin-top: 100px;
   }
-  
-  .Inqheading {
-    font-size: 2rem;
-    color: #ffffff;
-    font-weight:500;
-    margin-bottom: -10px;
-  }
-  
-  .subheading {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: #ffffff;
-    margin-bottom: 1.7rem;
-  }
-  
+
   .inputRow {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+      flex-direction: column;
+      gap: 0.5rem;
   }
-  
+
+  .InqinputField {
+      width: 100%;
+  }
+
+  .submitButton {
+      width: 100%;
+  }
+}
+
+@media(max-width: 460px){
   .InqinputField {
     flex: 1;
-    flex-direction: column;
-    padding: 0.5rem!important;
+    padding: 0.5rem;
+    min-width: 200px;
     border-radius: 8px!important;
     border: 1px solid white!important;
     background: none;
     color: #fff;
     font-size: 1rem!important;
-    width: 360px!important;
   }
-  
-  
-  .messageField {
-    width: 100%;
-    height: 100px;
-    padding: 0.8rem;
-    border-radius: 8px;
-    border: 1px solid white;
-    background: none;
-    color: #fff;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .submitButton {
-    background: linear-gradient(to right, #004D00 0%, #DDFFE3 100%);
-    border: none;
-    color: black;
-    padding: 0.5rem 2rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
-  
-  .submitButton:hover {
-    background: linear-gradient(to left, #004D00 0%, #DDFFE3 100%);
-    box-shadow: 0px 4px 10px rgba(201, 239, 208, 0.6);
-    font-size: 1rem;
-  }
-  
-  .visually-hidden {
-    position: absolute;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-  
-  .error{
-    color: red;
-    font-size: 10px;
-  }
+}

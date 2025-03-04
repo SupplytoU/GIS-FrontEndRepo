@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { IoIosGlobe } from "react-icons/io";
-import { MdOutlineEmail } from "react-icons/md";
-import { IoCallOutline } from "react-icons/io5";
+import { IoIosMenu } from "react-icons/io";
 import styles from './Section1.module.css';
 import mainVideo from './video.mp4';
 
 function CombinedSection() {
   const [fadeInClass, setFadeInClass] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Menu state
   const heroContainerRef = useRef(null);
   const navigate = useNavigate();
   const words = ['Insights.', 'Mapping.', 'Tracking.'];
@@ -52,17 +51,38 @@ function CombinedSection() {
             <source src={mainVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div className={styles.logo}>
-            SUPPLY2U
-          </div>
+
           <nav className={styles.navigation}>
-            <div className={styles.navLinks}>
+            <div className={styles.logo}>SUPPLY2U</div>
+
+            {/* Desktop Navigation */}
+            <div className={`${styles.navLinks} ${styles.desktopNav}`}>
               <a href='https://supply2u.jhubafrica.com/' className={styles.navItem}>About Us</a>
               <a href='https://supply2u.jhubafrica.com/#solutions' className={styles.navItem}>Our Solutions</a>
               <div className={styles.navItem}>Contact Us</div>
             </div>
+
+            {/* Mobile Navigation - Menu Icon */}
+            <div 
+              className={styles.menuIcon} 
+              onMouseEnter={() => setIsMenuOpen(true)} 
+              onMouseLeave={() => setIsMenuOpen(false)}
+            >
+              <IoIosMenu size={28} />
+
+              {/* Dropdown Menu */}
+              {isMenuOpen && (
+                <div className={styles.mobileMenu}>
+                  <a href='https://supply2u.jhubafrica.com/' className={styles.mobileNavItem}>About Us</a>
+                  <a href='https://supply2u.jhubafrica.com/#solutions' className={styles.mobileNavItem}>Our Solutions</a>
+                  <div className={styles.mobileNavItem}>Contact Us</div>
+                </div>
+              )}
+            </div>
+
             <button className={styles.joinButton} onClick={() => navigate('/Login')}>Log In</button>
           </nav>
+
           <div className={styles.content}>
             <h1 className={styles.heroTitle}>
               Smart Agriculture with<br /> Geo
@@ -74,8 +94,9 @@ function CombinedSection() {
               with unparalleled efficiency and informed decision-making.
             </p>
           </div>
+
           <div className={styles.ctaContainer}>
-            <Link className={styles.ctaButton} onClick={() => navigate('/Signup')}>GET STARTED</Link>
+            <div className={styles.ctaButton} onClick={() => navigate('/Signup')}>GET STARTED</div>
           </div>
         </div>
       </section>

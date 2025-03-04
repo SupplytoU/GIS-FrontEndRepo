@@ -152,10 +152,9 @@
   position: fixed;
   z-index: 100;
   font-weight: 600;
-  font-size: clamp(1rem, 2vw, 2rem); /* Responsive font */
+  font-size: clamp(1.5rem, 2vw, 2rem); 
   left: 40px;
-  top: 20px;
-  animation: floatAnimation 3s ease-in-out infinite; /* Looping animation */
+  animation: floatAnimation 3s ease-in-out infinite; 
   transition: color 0.3s ease-in-out;
 }
 
@@ -219,7 +218,57 @@
     padding: 15px 30px;
     font-size: 1rem;
   }
+  .heroContainer{
+    height: 80vh;
+  }
 }
+
+/* Hide menu links by default on small screens */
+@media (max-width: 840px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .menuIcon {
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .mobileMenu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+
+  .mobileNavItem {
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s;
+  }
+
+  .mobileNavItem:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Show full navigation on large screens */
+@media (min-width: 841px) {
+  .menuIcon {
+    display: none;
+  }
+}
+
 
 @media (max-width: 768px) {
   .heroTitle {
@@ -234,6 +283,12 @@
     width: 80%;
     padding: 12px 25px;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .joinButton{
+    display: none;
   }
 }
 
@@ -256,5 +311,8 @@
   .ctaButton {
     width: 90%;
     font-size: 0.85rem;
+  }
+  .heroContainer{
+    height: 100vh;
   }
 }

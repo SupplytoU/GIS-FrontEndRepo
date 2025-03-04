@@ -117,8 +117,8 @@ const AddField = ({ onAddField }) => {
         <>
             <div className="add-location-container">
                 <div className="form-sidebar-container" data-theme={isDark ? "dark" : "mapping"}>
-                <button className="back-button" onClick={() => navigate('/View Locations')}>
-                 <FaArrowLeft /> Back
+                <button className="back-button" onClick={() => navigate("/View Locations")}>
+                <FaArrowLeft /> <span className="home-text">Back</span>
                 </button>
                     <form className="add-field-form" onSubmit={handleFieldAddition}>
                         <h2 className='LocationTitle'>Add Field Drawing</h2>

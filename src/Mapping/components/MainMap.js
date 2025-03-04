@@ -197,9 +197,9 @@ const zoomToFarm = (farm) => {
     
   };
 
-  if (isLoading) {
-    return <MapLoading onLoadComplete={() => setIsLoading(false)} />;
-  }
+  // if (isLoading) {
+  //   return <MapLoading onLoadComplete={() => setIsLoading(false)} />;
+  // }
 
   return (
     <>
@@ -209,8 +209,9 @@ const zoomToFarm = (farm) => {
           data-theme={isDark ? "dark" : "mapping"}
         >
           <button className="back-button" onClick={() => navigate("/")}>
-            <FaArrowLeft /> Home
-          </button>
+          <FaArrowLeft /> <span className="home-text">HOME</span>
+            </button>
+
           <div className="search-section">
             <div className="search-bar">
               <input

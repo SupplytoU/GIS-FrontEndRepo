@@ -231,7 +231,7 @@ const zoomToFarm = (farm) => {
                     {Array.from(
                       new Set(locations.map((location) => location.region))
                     ).map((region) => (
-                      <option key={region} value={region}>
+                      <option key={region} value={region} className="options">
                         {region}
                       </option>
                     ))}
@@ -241,7 +241,7 @@ const zoomToFarm = (farm) => {
                     {Array.from(
                       new Set(locations.map((location) => location.label))
                     ).map((label) => (
-                      <option key={label} value={label}>
+                      <option key={label} value={label} className="options">
                         {label}
                       </option>
                     ))}
@@ -253,7 +253,11 @@ const zoomToFarm = (farm) => {
                   <select onChange={handleLocationSelectChange}>
                     <option value="">Select Location</option>
                     {filteredLocations.map((location) => (
-                      <option key={location.id} value={String(location.id)}>
+                      <option
+                        key={location.id}
+                        value={String(location.id)}
+                        className="options"
+                      >
                         {location.name}
                       </option>
                     ))}
@@ -266,7 +270,11 @@ const zoomToFarm = (farm) => {
                   <select value={selectedFarmer} onChange={handleFarmerChange}>
                     <option value="">All Farmers</option>
                     {farmers.map((farmer) => (
-                      <option key={farmer.id} value={farmer.id}>
+                      <option
+                        key={farmer.id}
+                        value={farmer.id}
+                        className="options"
+                      >
                         {farmer.name}
                       </option>
                     ))}
@@ -283,7 +291,7 @@ const zoomToFarm = (farm) => {
                         )
                       )
                     ).map((produce) => (
-                      <option key={produce} value={produce}>
+                      <option key={produce} value={produce} className="options">
                         {produce}
                       </option>
                     ))}
@@ -294,7 +302,11 @@ const zoomToFarm = (farm) => {
                   <select onChange={handleFarmSelectChange}>
                     <option value="">Select Farm</option>
                     {filteredFarms.map((farm) => (
-                      <option key={farm.id} value={String(farm.id)}>
+                      <option
+                        key={farm.id}
+                        value={String(farm.id)}
+                        className="options"
+                      >
                         {farm.name}
                       </option>
                     ))}
@@ -475,18 +487,18 @@ const zoomToFarm = (farm) => {
         </MapContainer>
       </div>
       <ToastContainer
-position="top-right"
-autoClose={2000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="colored"
-transition={Bounce}
-/>
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </>
   );
 }

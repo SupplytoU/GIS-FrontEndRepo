@@ -82,7 +82,7 @@ function Section1() {
           </p>
         </div>
         <div className={styles.ctaContainer}>
-          <Link className={styles.ctaButton} onClick={() => navigate('/Signup')}>GET STARTED</Link>
+        <Link to="/Signup" className={styles.ctaButton}>GET STARTED</Link>
         </div>
       </div>
     </section>

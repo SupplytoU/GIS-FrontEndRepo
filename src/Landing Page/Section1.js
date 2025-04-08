@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoIosMenu } from "react-icons/io";
 import styles from './Section1.module.css';
@@ -13,7 +13,7 @@ function CombinedSection() {
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
-  const words = ['Insights.', 'Mapping.', 'Tracking.'];
+  const words = useMemo(() => ['Insights.', 'Mapping.', 'Tracking.'], []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => setFadeInClass(styles.fadeIn), 300);

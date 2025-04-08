@@ -9,8 +9,7 @@ import styles from './LandingPage.module.css';
 
 const Landing = () => {
   const [loading, setLoading] = useState(true);
-  const [showScroll, setShowScroll] = useState(false);
-  const section1Ref = useRef(null);
+  const [setShowScroll] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {

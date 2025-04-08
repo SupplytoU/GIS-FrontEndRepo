@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { IoIosMenu } from "react-icons/io";
 import styles from './Section1.module.css';
 import mainVideo from './video.mp4';
@@ -9,11 +9,11 @@ function CombinedSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Menu state
   const heroContainerRef = useRef(null);
   const navigate = useNavigate();
-  const words = ['Insights.', 'Mapping.', 'Tracking.'];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
+  const words = ['Insights.', 'Mapping.', 'Tracking.'];
 
   useEffect(() => {
     const timeoutId = setTimeout(() => setFadeInClass(styles.fadeIn), 300);

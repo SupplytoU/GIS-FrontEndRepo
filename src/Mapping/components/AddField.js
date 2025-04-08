@@ -4,7 +4,7 @@ import { EditControl } from 'react-leaflet-draw';
 import axiosInstance from '../../utils/axiosInstance';
 import Geocoder from './Geocoder';
 import './crudForm.css';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import useLocalStorage from "use-local-storage";
 import Modal from './Modal';
@@ -107,9 +107,9 @@ const AddField = ({ onAddField }) => {
     }
   };
   const navigate = useNavigate();
-  const handleUpdate = (id, type) => {
-    navigate(`/update-${type}/${id}`);
-  };
+//   const handleUpdate = (id, type) => {
+//     navigate(`/update-${type}/${id}`);
+//   };
 
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
 

@@ -23,9 +23,9 @@ const contactData = [
 ];
 
 const navigate = useNavigate();
-const handleUpdate = (id, type) => {
-  navigate(`/update-${type}/${id}`);
-};
+// const handleUpdate = (id, type) => {
+//   navigate(`/update-${type}/${id}`);
+// };
 
 
   return (
@@ -46,7 +46,7 @@ const handleUpdate = (id, type) => {
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/4c12f57527f6d2962694404ab9b5789976363d555cbc05f9f208a1dd8235ea19?placeholderIfAbsent=true&apiKey=7a55d1e3f90e440382ed8e79ea8a2c83"
                 className={styles.divider}
-                alt=""
+                alt="Divider"
               />
             )}
           </React.Fragment>
@@ -65,7 +65,7 @@ const handleUpdate = (id, type) => {
         loading="lazy"
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/42e68dc9ee13cd6bd0c936d20f714e2ede5f34c2972b1382a4c92a775a32b4bd?placeholderIfAbsent=true&apiKey=7a55d1e3f90e440382ed8e79ea8a2c83"
         className={styles.footerImage}
-        alt=""
+        alt="Image"
       />      
       <div className={styles.copyright}>
         2024 ©SUPPLY2U- ALL RIGHTS RESERVED

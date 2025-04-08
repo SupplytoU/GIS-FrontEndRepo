@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./Section1.css";
 import logo from './Images/Logo1.png';
 import mainVideo from './Images/video.mp4';
-import Solutions from "./Dropdown/Solutions";
 import LoginIcon from "./LoginIcon";
 import { IoIosGlobe } from "react-icons/io";
 import { MdOutlineEmail } from "react-icons/md";

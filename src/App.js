@@ -166,7 +166,6 @@ function App() {
             <Route path="/Contact Us" element={<UserInquiries />} />
             <Route path="/login" element={<Login />} />
             <Route path="/landingPage" element={<LandingPage />} />
-            {/* <Route path="/" element={<HomeFinal />} /> */}
             <Route path="/welcome" element={<WelcomePage userFirstName="Neema" />} />
             <Route path="/OurSolutions" element={<Solutions />} />
             <Route path="/Signup" element={<Signup />} />

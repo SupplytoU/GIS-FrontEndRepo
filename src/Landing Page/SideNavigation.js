@@ -4,12 +4,6 @@ import { IoIosGlobe } from "react-icons/io";
 import { MdOutlineEmail } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
 
-const navIcons = [
-  { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/6c1c636c44723bb300089ee61a4bd0059ec28782487939edfc188ad8903a288b?placeholderIfAbsent=true&apiKey=7a55d1e3f90e440382ed8e79ea8a2c83", alt: "Navigation icon 1" },
-  { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/bbc61f4d9744279008f75b56d544a583a183b695ef345e8229597b440d6f4cd5?placeholderIfAbsent=true&apiKey=7a55d1e3f90e440382ed8e79ea8a2c83", alt: "Navigation icon 2" },
-  { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/2a1069b5bd7ee337f7941b90f7464ac74a6b8f940e7797f4e1841f726b602765?placeholderIfAbsent=true&apiKey=7a55d1e3f90e440382ed8e79ea8a2c83", alt: "Navigation icon 3" }
-];
-
 export function SideNavigation() {
   return (
     <nav className={styles.sideNav}>

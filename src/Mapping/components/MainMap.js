@@ -9,7 +9,6 @@ import Geocoder from './Geocoder';
 import { useNavigate} from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance';
 import './MainMap.css'; // Import the CSS file for button styling
-import MapLoading from './MapLoading'; // Import the renamed MapLoading component
 import { FaArrowLeft } from 'react-icons/fa'; // Import the arrow icon
 import useLocalStorage from "use-local-storage";
 
@@ -33,7 +32,7 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
   const [selectedProduce, setSelectedProduce] = useState('');
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [filteredFarms, setFilteredFarms] = useState(farms);
-  const [isLoading, setIsLoading] = useState(true);
+  const [setIsLoading] = useState(true);
 
 
   const navigate = useNavigate();

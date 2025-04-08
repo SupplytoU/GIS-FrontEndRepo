@@ -18,9 +18,8 @@ function Signup() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
+  const [setError] = useState("");
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false); // Define modal state
   const [role, setRole] = useState("farmer"); // Default value can be 'farmer'
 
   const validatePassword = (password, confirmPassword) => {

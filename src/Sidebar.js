@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Account from "./Images/Account.png";
 import HelpImg from "./Images/Help.png";
-import Notifications from "./Images/Notifications.png";
 import Theme from './Images/theme.png';
 import { Toggle } from "./Toggle/Toggle";
 import useLocalStorage from "use-local-storage";
@@ -44,7 +43,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           <div className="Settingsdiv-3">
             <div className="Settings">Settings</div>
             <div className="SettingsAccount">
-              <img loading="lazy" src={Account} className="Settingsimg-1" />
+              <img loading="lazy" src={Account} className="Settingsimg-1" alt='image' />
               <div className="AccountTxt">Account</div>
             </div>
           </div>
@@ -56,14 +55,14 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
                 <div className="SettingsChangePass"><Link to='/Change Password'>Change Password</Link></div>
               </div>
               <div className="Settingsdiv-13">
-                <Link to='/Account'><IoIosArrowForward className='Settingsimg-3' /></Link>
+                <Link to='/Account'><IoIosArrowForward className='Settingsimg-3'/></Link>
                 <Link to='/ChangePassword'><IoIosArrowForward className='Settingsimg-3' /></Link>
               </div>
             </div>
           </div>
           <div className="Settingsdiv-3">
             <div className="SettingsAccount">
-              <img loading="lazy" src={Theme} className="Settingsimg-1" />
+              <img loading="lazy" src={Theme} className="Settingsimg-1" alt='image'/>
               <div className="AccountTxt">Appearance</div>
             </div>
           </div>
@@ -79,7 +78,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           </div>
           <div className="Settingsdiv-3">
             <div className="SettingsAccount">
-              <img loading="lazy" src={HelpImg} className="Settingsimg-1" />
+              <img loading="lazy" src={HelpImg} className="Settingsimg-1" alt='image'/>
               <div className="AccountTxt">Help</div>
             </div>
           </div>

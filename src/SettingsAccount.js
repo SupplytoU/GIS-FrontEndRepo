@@ -19,7 +19,7 @@ const SettingsAccount = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
 
   // Destructure useLocalStorage correctly
-  const [isDark, setIsDark] = useLocalStorage("isDark", false);
+  const [isDark] = useLocalStorage("isDark", false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -48,7 +48,7 @@ const SettingsAccount = () => {
 
   const [stepsEnabled, setStepsEnabled] = useState(false);
   const [initialStep] = useState(0);
-  const [steps, setSteps] = useState([
+  const [steps] = useState([
     {
       element: ".Account",
       intro: "Welcome to your settings page! </br>Here you can update your personal information"
@@ -64,7 +64,7 @@ const SettingsAccount = () => {
   ]);
 
   const [hintsEnabled, setHintsEnabled] = useState(false);
-  const [hints, setHints] = useState([
+  const [hints] = useState([
     {
       element: ".EditIcon",
       hint: "Account hint",

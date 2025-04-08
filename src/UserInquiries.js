@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import './Inquiries.css';
-import inquiriesImg from "./Images/a.jpg";
 import mail from "./Images/Mail.png";
 import phone from "./Images/Phone.png";
 import email from "./Images/Email.png";
@@ -21,7 +20,7 @@ function Inquiries() {
   });
   const [errors, setErrors] = useState({});
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
-  const [isDark, setIsDark] = useLocalStorage("isDark", false);
+  const [isDark] = useLocalStorage("isDark", false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 

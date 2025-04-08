@@ -19,7 +19,7 @@ const AddField = ({ onAddField }) => {
     const [description, setDescription] = useState('');
     const [produce, setProduce] = useState([{ produce_type: '', variety: '' }]);
     const [farmer, setFarmer] = useState('');
-    const [farmArea, setFarmArea] = useState(''); // New state for farm area in acres
+    const [farmArea] = useState(''); // New state for farm area in acres
     const [farmers, setFarmers] = useState([]);
     const [notification, setNotification] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -111,7 +111,7 @@ const AddField = ({ onAddField }) => {
 //     navigate(`/update-${type}/${id}`);
 //   };
 
-  const [isDark, setIsDark] = useLocalStorage("isDark", false);
+  const [isDark] = useLocalStorage("isDark", false);
 
     return (
         <>

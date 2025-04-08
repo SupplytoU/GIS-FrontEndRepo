@@ -6,7 +6,7 @@ import './Success.css';
 function Success() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [ setIsTokenPresent] = useState(false);
+  const [ , setIsTokenPresent] = useState(false);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);

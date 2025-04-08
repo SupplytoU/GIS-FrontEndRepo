@@ -32,7 +32,7 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
   const [selectedProduce, setSelectedProduce] = useState('');
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [filteredFarms, setFilteredFarms] = useState(farms);
-  const [setIsLoading] = useState(true);
+  const [, setIsLoading] = useState(true);
 
 
   const navigate = useNavigate();

@@ -43,7 +43,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           <div className="Settingsdiv-3">
             <div className="Settings">Settings</div>
             <div className="SettingsAccount">
-              <img loading="lazy" src={Account} className="Settingsimg-1" alt='image' />
+              <img loading="lazy" src={Account} className="Settingsimg-1" alt='Settings image1' />
               <div className="AccountTxt">Account</div>
             </div>
           </div>
@@ -62,7 +62,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           </div>
           <div className="Settingsdiv-3">
             <div className="SettingsAccount">
-              <img loading="lazy" src={Theme} className="Settingsimg-1" alt='image'/>
+              <img loading="lazy" src={Theme} className="Settingsimg-1" alt='Settings image3'/>
               <div className="AccountTxt">Appearance</div>
             </div>
           </div>
@@ -78,7 +78,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           </div>
           <div className="Settingsdiv-3">
             <div className="SettingsAccount">
-              <img loading="lazy" src={HelpImg} className="Settingsimg-1" alt='image'/>
+              <img loading="lazy" src={HelpImg} className="Settingsimg-1" alt='Setting image3'/>
               <div className="AccountTxt">Help</div>
             </div>
           </div>

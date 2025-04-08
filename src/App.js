@@ -23,7 +23,6 @@ import SideBar from './Sidebar.js';
 import Section1 from './Section1.js';
 import Inquries from './Inquiries.js';
 import UserInquiries from './UserInquiries.js';
-import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
@@ -41,7 +40,6 @@ import Google from './ContinueWithGoogle.js';
 import axiosInstance from './utils/axiosInstance.js';
 
 function App() {
-  const userFirstName = "Neema";
   const [locations, setLocations] = useState([]);
   const [farms, setFarms] = useState([]);
   const [farmers, setFarmers] = useState([]);

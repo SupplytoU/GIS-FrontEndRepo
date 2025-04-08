@@ -18,7 +18,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');  
-  const [success, setSuccess] = useState(false);
+  const [success] = useState(false);
 
   useEffect(() => {
     if (emailRef.current) {
@@ -132,7 +132,7 @@ function Login() {
                     loading="lazy"
                     src={mark}
                     className="Loginimg-3"
-                    alt='Image'
+                    alt='Login Image'
                   />
                   <div className="LoginSuccess">Login successful!<br/> Redirecting to home page...</div>
                 </div>

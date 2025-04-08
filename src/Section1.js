@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Section1.css";
 import logo from './Images/Logo1.png';
@@ -24,7 +24,7 @@ function Section1() {
     });
   }, []);
 
-  const words = ["Insights.", "Mapping.", "Tracking."];
+  const words = useMemo(() =>["Insights.", "Mapping.", "Tracking."] , []);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);

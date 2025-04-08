@@ -40,7 +40,7 @@ const Forgot = () => {
     <>
       <div className="Forgotdiv">
         <div className="Forgotdiv-2">
-          <img loading="lazy" src={image} className="ForgotImg" />
+          <img loading="lazy" src={image} className="ForgotImg" alt='Image'/>
           <div className="ForgotPassword">
             FORGOT <br /> PASSWORD?
           </div>

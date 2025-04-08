@@ -44,7 +44,7 @@ const SettingsPass = ({ page }) => { // Add page prop to determine which page is
 
   const [stepsEnabled, setStepsEnabled] = useState(false);
   const [initialStep] = useState(0);
-  const [steps, setSteps] = useState([
+  const [steps] = useState([
     {
       element: ".Account",
       intro: "Welcome to your account password section! </br>Here you can manage your password."
@@ -61,7 +61,7 @@ const SettingsPass = ({ page }) => { // Add page prop to determine which page is
   ]);
 
   const [hintsEnabled, setHintsEnabled] = useState(false);
-  const [hints, setHints] = useState([
+  const [hints] = useState([
     {
       element: ".EditIcon2",
       hint: "Account hint",

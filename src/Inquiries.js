@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import './Inquiries.css';
-import inquiriesImg from "./Images/a.jpg";
-import mail from "./Images/Mail.png";
 import phone from "./Images/Phone.png";
 import email from "./Images/Email.png";
 import web from "./Images/Web.png";

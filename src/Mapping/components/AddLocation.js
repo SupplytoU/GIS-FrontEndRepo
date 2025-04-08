@@ -112,7 +112,7 @@ const AddLocation = ({ onAdd }) => {
   const navigate = useNavigate();
 
   //Dark mode/light mode
-const [isDark, setIsDark] = useLocalStorage("isDark", false);
+const [isDark] = useLocalStorage("isDark", false);
 
   return (
     <>

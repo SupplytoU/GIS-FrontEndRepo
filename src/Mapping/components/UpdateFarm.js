@@ -131,7 +131,7 @@ console.log(polygonString);
     });
     return coordinates;
   };
-  const [isDark, setIsDark] = useLocalStorage("isDark", false);
+  const [isDark] = useLocalStorage("isDark", false);
   if (!farm || !farmers.length) {
     return <div>Loading...</div>;
   }

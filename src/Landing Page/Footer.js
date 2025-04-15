@@ -65,7 +65,7 @@ const navigate = useNavigate();
         loading="lazy"
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/42e68dc9ee13cd6bd0c936d20f714e2ede5f34c2972b1382a4c92a775a32b4bd?placeholderIfAbsent=true&apiKey=7a55d1e3f90e440382ed8e79ea8a2c83"
         className={styles.footerImage}
-        alt="Image"
+        alt="Footer"
       />      
       <div className={styles.copyright}>
         2024 ©SUPPLY2U- ALL RIGHTS RESERVED

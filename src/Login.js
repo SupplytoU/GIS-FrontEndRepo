@@ -132,7 +132,7 @@ function Login() {
                     loading="lazy"
                     src={mark}
                     className="Loginimg-3"
-                    alt='Login Image'
+                    alt='Login'
                   />
                   <div className="LoginSuccess">Login successful!<br/> Redirecting to home page...</div>
                 </div>

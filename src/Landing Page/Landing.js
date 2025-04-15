@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Section1 from './Section1'
 import Section2 from './Section2';
 import Section3 from './Section3'
@@ -9,7 +9,7 @@ import styles from './LandingPage.module.css';
 
 const Landing = () => {
   const [loading, setLoading] = useState(true);
-  const [setShowScroll] = useState(false);
+  const [,setShowScroll] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -13,6 +13,7 @@ function Footer() {
             loading="lazy"
            src={footerlogo}
             className="Footer-logo"
+            alt="Footer"
           /></Link>
           {/* <div className="company-name">Supply2U</div> */}
         </div>
@@ -28,6 +29,7 @@ function Footer() {
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/df0a24fd779e2d5822a8f27903af233327fc176187074d845bb68faa2465e617?apiKey=7a55d1e3f90e440382ed8e79ea8a2c83&"
           className="footer-logo"
+          alt="Footer"
         />
         <div className="footer-content">
           <div className="footer-links">

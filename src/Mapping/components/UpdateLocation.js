@@ -57,7 +57,6 @@ const UpdateLocation = ({farms, onUpdate }) =>
       })
       .catch(error => {
         toast.error('Error fetching location data');
-        console.error("There was an error fetching the location data!", error);
       });
   }, [id]);
 
@@ -172,6 +171,7 @@ const UpdateLocation = ({farms, onUpdate }) =>
               <div className="form-control">
                 <label>Farm</label>
                 <select
+                  data-testid="farm-select"
                   value={farmName}
                   onChange={(e) => setFarmName(e.target.value)}
                 >

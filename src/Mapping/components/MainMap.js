@@ -51,7 +51,6 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
       setIsLoading(false);
     }, 3000); // Adjust the timeout duration as needed
   }, []);
-
   const handleDelete = async (id, type) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this item?");
     if (confirmDelete) {

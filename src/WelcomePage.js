@@ -4,7 +4,7 @@ import axiosInstance from "./utils/axiosInstance";
 import "./WelcomePage.css";
 import welcome from './Images/Welcome.jpg';
 import Solutions from "./Dropdown/Solutions";
-import LoginIcon from "./LoggedinIcon";
+import LoginIcon from "./Authentication/LoggedinIcon";
 
 function WelcomePage() {
   const [userFirstName, setUserFirstName] = useState('User');

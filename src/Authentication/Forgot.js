@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Forgot.css';
-import image from './Images/Forgot password-pana.png';
+import image from '../Images/Forgot password-pana.png';
 
 const Forgot = () => {
   const emailReference = useRef(null);

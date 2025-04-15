@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import google from './Images/Google.png';
-import mark from './Images/mark.png';
+import google from '../Images/Google.png';
+import mark from '../Images/mark.png';
 import { Link } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
-import { useJwtCreateMutation } from './redux/features/auth/authApiSlice';
+import { useJwtCreateMutation } from '../redux/features/auth/authApiSlice';
 import { useDispatch } from 'react-redux';
-import { setAuth } from './redux/features/auth/authSlice';
-import { ContinueWithGoogle } from './components/ContinueWithGoogle';
+import { setAuth } from '../redux/features/auth/authSlice';
+import { ContinueWithGoogle } from '../components/ContinueWithGoogle';
 
 
 function Login() {

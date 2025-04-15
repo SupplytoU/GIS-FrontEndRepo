@@ -244,7 +244,7 @@ input[type="message"], input[type="email"], input[type="password"] {
   .LoginContainer {
     display: flex;
     gap: 0;
-    background-image: url('./Images/Signup.jpeg');
+    background-image: url('../Images/Signup.jpeg');
     background-size: cover;
     background-position: center;
     height: 100vh;

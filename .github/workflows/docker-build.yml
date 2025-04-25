@@ -23,4 +23,4 @@ jobs:
         run: |
             docker build -t ugavi.azurecr.io/frontend:latest .
             docker tag ugavi.azurecr.io/frontend:latest ugavi.azurecr.io/frontend:$(date +%Y%m%d%H%M%S)
-            docker push ugavi.azurecr.io/frontend:latest
+            docker push ugavi.azurecr.io/frontend:$(date +%Y%m%d%H%M%S)

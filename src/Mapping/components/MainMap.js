@@ -11,6 +11,8 @@ import axiosInstance from '../../utils/axiosInstance';
 import './MainMap.css'; // Import the CSS file for button styling
 import { FaArrowLeft } from 'react-icons/fa'; // Import the arrow icon
 import useLocalStorage from "use-local-storage";
+import { ZoomControl } from 'react-leaflet';
+
 
 const { BaseLayer, Overlay } = LayersControl;
 
@@ -33,6 +35,7 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [filteredFarms, setFilteredFarms] = useState(farms);
   const [, setIsLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 
   const navigate = useNavigate();
@@ -203,10 +206,19 @@ const zoomToFarm = (farm) => {
   return (
     <>
       <div className="MainMap">
-        <div
-          className="filter-container"
-          data-theme={isDark ? "dark" : "mapping"}
-        >
+      <button 
+  className="menu-toggle" 
+  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+>
+  {isSidebarOpen ? '✕' : '☰'}
+</button>
+
+<div 
+  className={`filter-container ${isSidebarOpen ? 'open' : ''}`}
+  data-theme={isDark ? "dark" : "mapping"}
+>
+
+  
           <button className="back-button" onClick={() => navigate("/")}>
           <FaArrowLeft /> <span className="home-text">HOME</span>
             </button>
@@ -333,160 +345,167 @@ const zoomToFarm = (farm) => {
             </div>
           </div>
         </div>
+        </div>
         <MapContainer
-          center={[0, 38]}
-          zoom={7}
-          ref={mapRef}
-          style={{ height: "100vh" }}
-          whenReady={() => toast.success("Map loaded successfully!")}
-          error={(err) => {
-            console.error("Map loading error:", err);
-            toast.error(
-              "Failed to load the map. Please try refreshing the page."
-            );
-          }}
+  center={[0, 38]}
+  zoom={7}
+  ref={mapRef}
+  style={{ height: "100vh", position: "relative" }}
+  zoomControl={false} // Disable default zoom control
+  whenReady={() => toast.success("Map loaded successfully!")}
+  error={(err) => {
+    console.error("Map loading error:", err);
+    toast.error("Failed to load the map. Please try refreshing the page.");
+  }}
+  onClick={() => {
+    if (window.innerWidth <= 768 && isSidebarOpen) {
+      setIsSidebarOpen(false);
+    }
+  }}
+>
+  {/* Custom positioned zoom control */}
+  <ZoomControl position="topright" />
+
+  <Geocoder />
+  <LayersControl position="topright">
+    <BaseLayer checked name="Google Hybrid Map">
+      <TileLayer
+        url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+        attribution="&copy; Google Maps"
+        subdomains={["mt0", "mt1", "mt2", "mt3"]}
+        maxZoom={20}
+      />
+    </BaseLayer>
+    <BaseLayer name="Topo Map">
+      <TileLayer
+        url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png"
+        attribution="&copy; OpenStreetMap contributors"
+      />
+    </BaseLayer>
+    <BaseLayer name="Open Street Map">
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+      />
+    </BaseLayer>
+    <BaseLayer name="Esri World">
+      <TileLayer
+        url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+        attribution="&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+        maxZoom={20}
+      />
+    </BaseLayer>
+    <BaseLayer name="Traffic Map">
+      <TileLayer
+        url="https://{s}.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}"
+        attribution="&copy; Google Maps"
+        subdomains={["mt0", "mt1", "mt2", "mt3"]}
+        maxZoom={20}
+      />
+    </BaseLayer>
+    <Overlay checked name="Location Markers">
+      <LayerGroup>
+        <MarkerClusterGroup
+          iconCreateFunction={createCustomClusterIcon}
         >
-          <Geocoder />
-          <LayersControl position="topright">
-            <BaseLayer checked name="Google Hybrid Map">
-              <TileLayer
-                url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
-                attribution="&copy; Google Maps"
-                subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                maxZoom={20}
-              />
-            </BaseLayer>
-            <BaseLayer name="Topo Map">
-              <TileLayer
-                url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png"
-                attribution="&copy; OpenStreetMap contributors"
-              />
-            </BaseLayer>
-            <BaseLayer name="Open Street Map">
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-              />
-            </BaseLayer>
-            <BaseLayer name="Esri World">
-              <TileLayer
-                url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                attribution="&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-                maxZoom={20}
-              />
-            </BaseLayer>
-            <BaseLayer name="Traffic Map">
-              <TileLayer
-                url="https://{s}.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}"
-                attribution="&copy; Google Maps"
-                subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                maxZoom={20}
-              />
-            </BaseLayer>
-            <Overlay checked name="Location Markers">
-              <LayerGroup>
-                <MarkerClusterGroup
-                  iconCreateFunction={createCustomClusterIcon}
-                >
-                  {filteredLocations.map((location) => (
-                    <Marker
-                      key={location.id}
-                      position={parseLocation(location.location)}
-                      icon={customIcon}
-                      eventHandlers={{
-                        click: () => {
-                          setActiveLocation(location);
-                        },
-                      }}
-                    />
-                  ))}
-                </MarkerClusterGroup>
-                {activeLocation && (
-                  <Popup
-                    position={parseLocation(activeLocation.location)}
-                    onClose={() => {
-                      setActiveLocation(null);
-                    }}
-                  >
-                    <div>
-                      <h2>{activeLocation.name}</h2>
-                      <p>{activeLocation.label}</p>
-                      <button
-                        className="delete-button"
-                        onClick={() =>
-                          handleDelete(activeLocation.id, "locations")
-                        }
-                      >
-                        Delete
-                      </button>
-                      <button
-                        className="update-button"
-                        onClick={() =>
-                          navigate(`/update-location/${activeLocation.id}`)
-                        }
-                      >
-                        Update
-                      </button>
-                    </div>
-                  </Popup>
-                )}
-              </LayerGroup>
-            </Overlay>
-            <Overlay checked name="Farm Polygons">
-              <LayerGroup>
-                {filteredFarms.map((farm) => (
-                  <Polygon
-                    key={farm.id}
-                    positions={parsePolygon(farm.farm_area)}
-                    eventHandlers={{
-                      click: () => {
-                        setActiveFarm(farm);
-                      },
-                    }}
-                  />
-                ))}
-                {activeFarm && (
-                  <Popup
-                    position={parsePolygon(activeFarm.farm_area)[0]}
-                    onClose={() => {
-                      setActiveFarm(null);
-                    }}
-                  >
-                    <div>
-                      <h2>{activeFarm.name}</h2>
-                      <p>
-                        <b>Acres: </b>
-                        {activeFarm.area_acres}
-                      </p>
-                      <p>
-                        <b>Owner: </b>
-                        {activeFarm.farmer}
-                      </p>
-                      <p>
-                        <b>Description: </b>
-                        {activeFarm.description}
-                      </p>
-                      <button
-                        className="delete-button"
-                        onClick={() => handleDelete(activeFarm.id, "farms")}
-                      >
-                        Delete
-                      </button>
-                      <button
-                        className="update-button"
-                        onClick={() => handleUpdate(activeFarm.id, "farm")}
-                      >
-                        Update
-                      </button>
-                    </div>
-                  </Popup>
-                )}
-              </LayerGroup>
-            </Overlay>
-          </LayersControl>
-        </MapContainer>
-      </div>
-      <ToastContainer
+          {filteredLocations.map((location) => (
+            <Marker
+              key={location.id}
+              position={parseLocation(location.location)}
+              icon={customIcon}
+              eventHandlers={{
+                click: () => {
+                  setActiveLocation(location);
+                },
+              }}
+            />
+          ))}
+        </MarkerClusterGroup>
+        {activeLocation && (
+          <Popup
+            position={parseLocation(activeLocation.location)}
+            onClose={() => {
+              setActiveLocation(null);
+            }}
+          >
+            <div>
+              <h2>{activeLocation.name}</h2>
+              <p>{activeLocation.label}</p>
+              <button
+                className="delete-button"
+                onClick={() =>
+                  handleDelete(activeLocation.id, "locations")
+                }
+              >
+                Delete
+              </button>
+              <button
+                className="update-button"
+                onClick={() =>
+                  navigate(`/update-location/${activeLocation.id}`)
+                }
+              >
+                Update
+              </button>
+            </div>
+          </Popup>
+        )}
+      </LayerGroup>
+    </Overlay>
+    <Overlay checked name="Farm Polygons">
+      <LayerGroup>
+        {filteredFarms.map((farm) => (
+          <Polygon
+            key={farm.id}
+            positions={parsePolygon(farm.farm_area)}
+            eventHandlers={{
+              click: () => {
+                setActiveFarm(farm);
+              },
+            }}
+          />
+        ))}
+        {activeFarm && (
+          <Popup
+            position={parsePolygon(activeFarm.farm_area)[0]}
+            onClose={() => {
+              setActiveFarm(null);
+            }}
+          >
+            <div>
+              <h2>{activeFarm.name}</h2>
+              <p>
+                <b>Acres: </b>
+                {activeFarm.area_acres}
+              </p>
+              <p>
+                <b>Owner: </b>
+                {activeFarm.farmer}
+              </p>
+              <p>
+                <b>Description: </b>
+                {activeFarm.description}
+              </p>
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(activeFarm.id, "farms")}
+              >
+                Delete
+              </button>
+              <button
+                className="update-button"
+                onClick={() => handleUpdate(activeFarm.id, "farm")}
+              >
+                Update
+              </button>
+            </div>
+          </Popup>
+        )}
+      </LayerGroup>
+    </Overlay>
+  </LayersControl>
+</MapContainer>
+<ToastContainer
         position="top-right"
         autoClose={2000}
         hideProgressBar={false}

@@ -171,7 +171,7 @@
   transition: border-color 0.3s;
   margin-bottom: 3vh;
   background-color: transparent;
-  color: var(--text-color);
+  color: var(--text-color) !important;
 }
 
 .form-input::placeholder {

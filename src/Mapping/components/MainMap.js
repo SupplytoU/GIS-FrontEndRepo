@@ -1,50 +1,94 @@
-import React, { useState, useRef, useEffect } from 'react';
-import 'leaflet/dist/leaflet.css';
+import React, { useState, useRef, useEffect } from "react";
+import "leaflet/dist/leaflet.css";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MapContainer, TileLayer, Marker, Popup, LayersControl, Polygon, LayerGroup } from 'react-leaflet';
-import { Icon } from 'leaflet';
-import MarkerClusterGroup from 'react-leaflet-cluster';
-import Geocoder from './Geocoder';
-import { useNavigate} from 'react-router-dom';
-import axiosInstance from '../../utils/axiosInstance';
-import './MainMap.css'; // Import the CSS file for button styling
-import MapLoading from './MapLoading'; // Import the renamed MapLoading component
-import { FaArrowLeft } from 'react-icons/fa'; // Import the arrow icon
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  LayersControl,
+  Polygon,
+  LayerGroup,
+} from "react-leaflet";
+import { Icon } from "leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
+import Geocoder from "./Geocoder";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
+import "./MainMap.css"; // Import the CSS file for button styling
+import MapLoading from "./MapLoading"; // Import the renamed MapLoading component
+import { FaArrowLeft } from "react-icons/fa"; // Import the arrow icon
 import useLocalStorage from "use-local-storage";
+import { FiMenu } from "react-icons/fi";
+import L from "leaflet";
 
 const { BaseLayer, Overlay } = LayersControl;
 
 delete Icon.Default.prototype._getIconUrl;
 
 Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
-  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png",
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png",
 });
 
-function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, createCustomClusterIcon, farmers }) {
+function MainMap({
+  locations,
+  farms,
+  parseLocation,
+  parsePolygon,
+  customIcon,
+  createCustomClusterIcon,
+  farmers,
+}) {
   const [activeLocation, setActiveLocation] = useState(null);
   const [activeFarm, setActiveFarm] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedRegion, setSelectedRegion] = useState('');
-  const [selectedLabel, setSelectedLabel] = useState('');
-  const [selectedFarmer, setSelectedFarmer] = useState('');
-  const [selectedProduce, setSelectedProduce] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
+  const [selectedLabel, setSelectedLabel] = useState("");
+  const [selectedFarmer, setSelectedFarmer] = useState("");
+  const [selectedProduce, setSelectedProduce] = useState("");
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [filteredFarms, setFilteredFarms] = useState(farms);
   const [isLoading, setIsLoading] = useState(true);
-
-
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar state
+  const sidebarRef = useRef();
   const navigate = useNavigate();
   const mapRef = useRef();
+
+  // Close sidebar when clicking outside
+ useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        if (!menuToggle || !menuToggle.contains(event.target)) {
+          setIsSidebarOpen(false);
+          document.body.style.overflow = '';
+        }
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+//   useEffect(() => {
+//   if (mapRef.current) {
+//     L.control.zoom({ position: "topright" }).addTo(mapRef.current);
+//   }
+// }, []);
 
 
   useEffect(() => {
     setFilteredLocations(locations);
     setFilteredFarms(farms);
   }, [locations, farms]);
-
 
   useEffect(() => {
     // Simulate a loading delay for demonstration purposes
@@ -53,11 +97,19 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
     }, 3000); // Adjust the timeout duration as needed
   }, []);
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   const handleDelete = async (id, type) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this item?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
     if (confirmDelete) {
       try {
-        await axiosInstance.delete(`http://localhost:8000/api/fieldmapping/${type}/${id}`);
+        await axiosInstance.delete(
+          `http://localhost:8000/api/fieldmapping/${type}/${id}`
+        );
         toast.success(`${type} deleted successfully!`);
         window.location.reload(); // Reload the page to reflect changes
       } catch (error) {
@@ -78,8 +130,12 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
   const handleSearch = () => {
     const searchTermLower = searchTerm.toLowerCase();
 
-    let foundLocation = locations.find(location => location.name.toLowerCase() === searchTermLower);
-    let foundFarm = farms.find(farm => farm.name.toLowerCase() === searchTermLower);
+    let foundLocation = locations.find(
+      (location) => location.name.toLowerCase() === searchTermLower
+    );
+    let foundFarm = farms.find(
+      (farm) => farm.name.toLowerCase() === searchTermLower
+    );
 
     if (foundLocation) {
       toast.info(`Searching for: ${foundLocation.name}`);
@@ -98,36 +154,59 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
 
   const handleRegionChange = (event) => {
     setSelectedRegion(event.target.value);
-    applyFilters(event.target.value, selectedLabel, selectedFarmer, selectedProduce);
+    applyFilters(
+      event.target.value,
+      selectedLabel,
+      selectedFarmer,
+      selectedProduce
+    );
   };
 
   const handleLabelChange = (event) => {
     setSelectedLabel(event.target.value);
-    applyFilters(selectedRegion, event.target.value, selectedFarmer, selectedProduce);
+    applyFilters(
+      selectedRegion,
+      event.target.value,
+      selectedFarmer,
+      selectedProduce
+    );
   };
 
   const handleFarmerChange = (event) => {
     setSelectedFarmer(event.target.value);
-    applyFilters(selectedRegion, selectedLabel, event.target.value, selectedProduce);
+    applyFilters(
+      selectedRegion,
+      selectedLabel,
+      event.target.value,
+      selectedProduce
+    );
   };
 
   const handleProduceChange = (event) => {
     setSelectedProduce(event.target.value);
-    applyFilters(selectedRegion, selectedLabel, selectedFarmer, event.target.value);
+    applyFilters(
+      selectedRegion,
+      selectedLabel,
+      selectedFarmer,
+      event.target.value
+    );
   };
 
   const applyFilters = (region, label, farmer, produce) => {
-    const filteredLocs = locations.filter(location => {
+    const filteredLocs = locations.filter((location) => {
       return (
         (!region || location.region === region) &&
         (!label || location.label === label)
       );
     });
 
-    const filteredFarms = farms.filter(farm => {
+    const filteredFarms = farms.filter((farm) => {
       return (
         (!farmer || farm.farmer === farmer) &&
-        (!produce || farm.produce.some(produceItem => produceItem.produce_type === produce))
+        (!produce ||
+          farm.produce.some(
+            (produceItem) => produceItem.produce_type === produce
+          ))
       );
     });
 
@@ -137,19 +216,15 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
     if (!filteredLocs.length || !filteredFarms.length) {
       toast.info("No matching locations or farms for the selected filters.");
     }
-
   };
 
-const zoomToLocation = (location) => {
-  if (!location) return;
-  const [lat, lng] = parseLocation(location.location);
-  if (mapRef.current) {
-    mapRef.current.setView([lat, lng], 15, { duration: 1.5 });
-  }
-};
-
-
-
+  const zoomToLocation = (location) => {
+    if (!location) return;
+    const [lat, lng] = parseLocation(location.location);
+    if (mapRef.current) {
+      mapRef.current.setView([lat, lng], 15, { duration: 1.5 });
+    }
+  };
 
   const handleLocationSelectChange = (e) => {
     const selectedLocation = filteredLocations.find(
@@ -171,30 +246,28 @@ const zoomToLocation = (location) => {
     }
   };
 
-const zoomToFarm = (farm) => {
-  if (!farm) return;
-  const [lat, lng] = parsePolygon(farm.farm_area)[0];
-  if (mapRef.current) {
-    mapRef.current.setView([lat, lng], 15, { duration: 1.5 });
-  }
-};
+  const zoomToFarm = (farm) => {
+    if (!farm) return;
+    const [lat, lng] = parsePolygon(farm.farm_area)[0];
+    if (mapRef.current) {
+      mapRef.current.setView([lat, lng], 15, { duration: 1.5 });
+    }
+  };
   const [isDark] = useLocalStorage("isDark", false);
 
   const clearFilters = () => {
     toast.info("Filters cleared and map reset.", {
       autoClose: 1000,
-    }
-    );
+    });
     //window.location.reload(); // Reload the page to reflect change
-    setSearchTerm('');
-    setSelectedRegion('');
-    setSelectedLabel('');
-    setSelectedFarmer('');
-    setSelectedProduce('');
+    setSearchTerm("");
+    setSelectedRegion("");
+    setSelectedLabel("");
+    setSelectedFarmer("");
+    setSelectedProduce("");
     setFilteredLocations(locations);
     setFilteredFarms(farms);
     mapRef.current.setView([0, 38], 7);
-    
   };
 
   // if (isLoading) {
@@ -204,13 +277,19 @@ const zoomToFarm = (farm) => {
   return (
     <>
       <div className="MainMap">
+        {/* Mobile Toggle Button */}
+        <button className="menu-toggle" onClick={toggleSidebar}>
+          <FiMenu />
+        </button>
+
         <div
-          className="filter-container"
+          ref={sidebarRef}
+          className={`filter-container ${isSidebarOpen ? "open" : ""}`}
           data-theme={isDark ? "dark" : "mapping"}
         >
           <button className="back-button" onClick={() => navigate("/")}>
-          <FaArrowLeft /> <span className="home-text">HOME</span>
-            </button>
+            <FaArrowLeft /> <span className="home-text">HOME</span>
+          </button>
 
           <div className="search-section">
             <div className="search-bar">
@@ -334,19 +413,24 @@ const zoomToFarm = (farm) => {
             </div>
           </div>
         </div>
-        <MapContainer
-          center={[0, 38]}
-          zoom={7}
-          ref={mapRef}
-          style={{ height: "100vh" }}
-          whenReady={() => toast.success("Map loaded successfully!")}
-          error={(err) => {
-            console.error("Map loading error:", err);
-            toast.error(
-              "Failed to load the map. Please try refreshing the page."
-            );
-          }}
-        >
+    <MapContainer
+  center={[0, 38]}
+  zoom={7}
+  zoomControl={false} // Disable default zoom control
+  ref={mapRef}
+  style={{ height: "100vh" }}
+  whenReady={() => {
+    toast.success("Map loaded successfully!");
+    // Add zoom control after map is ready
+    if (mapRef.current) {
+      L.control.zoom({ position: "topright" }).addTo(mapRef.current);
+    }
+  }}
+  error={(err) => {
+    console.error("Map loading error:", err);
+    toast.error("Failed to load the map. Please try refreshing the page.");
+  }}
+>
           <Geocoder />
           <LayersControl position="topright">
             <BaseLayer checked name="Google Hybrid Map">

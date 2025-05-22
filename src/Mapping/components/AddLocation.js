@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, FeatureGroup, LayersControl } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Geocoder from './Geocoder';
 import Modal from './Modal'; 
 import './crudForm.css';
 import { FaArrowLeft } from 'react-icons/fa';
+import { FiMenu } from 'react-icons/fi'; // Import menu icon
 import useLocalStorage from "use-local-storage";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,18 +43,35 @@ const AddLocation = ({ onAdd }) => {
   const [region, setRegion] = useState("");
   const [description, setDescription] = useState("");
   const [farmName, setFarmName] = useState("");
-  const [farms, setFarms] = useState([]); // Define farms state
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [farms, setFarms] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
   const mapRef = useRef();
   const markerRef = useRef();
+  const sidebarRef = useRef();
+  const navigate = useNavigate();
+  const [isDark] = useLocalStorage("isDark", false);
 
   useEffect(() => {
     const fetchFarms = async () => {
       const res = await axiosInstance.get("http://localhost:8000/api/fieldmapping/farms/");
-      setFarms(res.data); // Update farms state
+      setFarms(res.data);
     };
 
     fetchFarms();
+
+    // Close sidebar when clicking outside
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target) && 
+          !document.querySelector('.menu-toggle').contains(event.target)) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const onCreated = (e) => {
@@ -63,33 +81,30 @@ const AddLocation = ({ onAdd }) => {
       setLatitude(lat);
       setLongitude(lng);
       mapRef.current.flyTo([lat, lng], 15);
-      markerRef.current = layer; // Store reference to the marker
+      markerRef.current = layer;
     }
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    // Validate required fields
     if (!name || !latitude || !longitude) {
       toast.error("Please fill in all required fields!");
       return;
     }
 
-    // Map the label and region to the corresponding values
     const labelValue = LABEL_CHOICES[label] || "";
     const regionValue = REGION_CHOICES[region] || "";
 
     onAdd({
       name,
-      label: labelValue, // Use the mapped label value
+      label: labelValue,
       location: `SRID=4326;POINT (${longitude} ${latitude})`,
-      region: regionValue, // Use the mapped region value
+      region: regionValue,
       description,
-      farmName: labelValue === "farms" ? farmName : undefined, // Update farmName condition
+      farmName: labelValue === "farms" ? farmName : undefined,
     });
 
-    // Reset form fields
     setName("");
     setLabel("");
     setLatitude("");
@@ -98,32 +113,38 @@ const AddLocation = ({ onAdd }) => {
     setDescription("");
     setFarmName("");
 
-    // Open modal to show success message
     setIsModalOpen(true);
 
     if (markerRef.current) {
-      markerRef.current.remove(); // Remove the marker from the map
+      markerRef.current.remove();
       markerRef.current = null;
     }
 
-    mapRef.current.flyTo([0, 38], 8); // Reset map to initial position
+    mapRef.current.flyTo([0, 38], 8);
   };
 
-  const navigate = useNavigate();
-
-  //Dark mode/light mode
-const [isDark, setIsDark] = useLocalStorage("isDark", false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <>
       <div className="add-location-container">
+        {/* Mobile Toggle Button */}
+        <button className="menu-toggle" onClick={toggleSidebar}>
+          <FiMenu />
+        </button>
+
         <div
-          className="form-sidebar-container"
+          ref={sidebarRef}
+          className={`form-sidebar-container ${isSidebarOpen ? 'open' : ''}`}
           data-theme={isDark ? "dark" : "mapping"}
         >
-           <button className="back-button" onClick={() => navigate("/View Locations")}>
-                    <FaArrowLeft /> <span className="home-text">Back</span>
-                      </button>
+          <div className="nav-group">
+            <button className="back-button" onClick={() => navigate("/View Locations")}>
+              <FaArrowLeft /> <span className="home-text">Back</span>
+            </button>
+          </div>
       
           <form className="add-location-form" onSubmit={onSubmit}>
             <h2 className="LocationTitle">Enter Location Details</h2>
@@ -220,61 +241,63 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
               className="btnlocation"
             />
           </form>
-  
         </div>
-        <MapContainer
-          center={[0, 38]}
-          zoom={8}
-          className="leaflet-container"
-          ref={mapRef}
-          whenReady={() => toast.success("Map loaded successfully!")}
-          error={(err) => {
-            console.error("Map loading error:", err);
-            toast.error(
-              "Failed to load the map. Please try refreshing the page."
-            );
-          }}
-        >
-          <Geocoder />
-          <LayersControl position="topright">
-            <BaseLayer checked name="Google Hybrid Map">
-              <TileLayer
-                url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
-                attribution="&copy; Google Maps"
-                subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                maxZoom={23}
+
+        <div className={`map-container ${isSidebarOpen ? 'overlay' : ''}`}>
+          <MapContainer
+            center={[0, 38]}
+            zoom={8}
+            className="leaflet-container"
+            ref={mapRef}
+            whenReady={() => toast.success("Map loaded successfully!")}
+            error={(err) => {
+              console.error("Map loading error:", err);
+              toast.error(
+                "Failed to load the map. Please try refreshing the page."
+              );
+            }}
+          >
+            <Geocoder />
+            <LayersControl position="topright">
+              <BaseLayer checked name="Google Hybrid Map">
+                <TileLayer
+                  url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+                  attribution="&copy; Google Maps"
+                  subdomains={["mt0", "mt1", "mt2", "mt3"]}
+                  maxZoom={23}
+                />
+              </BaseLayer>
+              <BaseLayer name="Terrain Map">
+                <TileLayer
+                  url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
+                  attribution="&copy; Google Maps"
+                  subdomains={["mt0", "mt1", "mt2", "mt3"]}
+                  maxZoom={20}
+                />
+              </BaseLayer>
+              <BaseLayer name="Esri World">
+                <TileLayer
+                  url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                  attribution="&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+                  maxZoom={20}
+                />
+              </BaseLayer>
+            </LayersControl>
+            <FeatureGroup>
+              <EditControl
+                position="topright"
+                draw={{
+                  rectangle: false,
+                  circle: false,
+                  circlemarker: false,
+                  polyline: false,
+                  polygon: false,
+                }}
+                onCreated={onCreated}
               />
-            </BaseLayer>
-            <BaseLayer name="Terrain Map">
-              <TileLayer
-                url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
-                attribution="&copy; Google Maps"
-                subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                maxZoom={20}
-              />
-            </BaseLayer>
-            <BaseLayer name="Esri World">
-              <TileLayer
-                url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                attribution="&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-                maxZoom={20}
-              />
-            </BaseLayer>
-          </LayersControl>
-          <FeatureGroup>
-            <EditControl
-              position="topright"
-              draw={{
-                rectangle: false,
-                circle: false,
-                circlemarker: false,
-                polyline: false,
-                polygon: false,
-              }}
-              onCreated={onCreated}
-            />
-          </FeatureGroup>
-        </MapContainer>
+            </FeatureGroup>
+          </MapContainer>
+        </div>
       </div>
 
       {/* Modal to show success message */}

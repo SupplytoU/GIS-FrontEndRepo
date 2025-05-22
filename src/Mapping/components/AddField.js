@@ -100,6 +100,7 @@ const AddField = ({ onAddField }) => {
         }
     };
 
+
     const handleCreated = (e) => {
         const type = e.layerType;
         const layer = e.layer;
@@ -115,6 +116,12 @@ const AddField = ({ onAddField }) => {
             toast.info("Field area drawn successfully!");
         }
     };
+    const navigate = useNavigate();
+//   const handleUpdate = (id, type) => {
+//     navigate(`/update-${type}/${id}`);
+//   };
+
+  const [isDark] = useLocalStorage("isDark", false);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);

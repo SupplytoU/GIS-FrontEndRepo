@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import "./Signup.css";
-import img from "./Images/Signup.jpeg";
+import img from "../Images/Signup.jpeg";
 import useLocalStorage from "use-local-storage";
-import google from "./Images/Google.png";
-import { useUserCreateMutation } from "./redux/features/auth/authApiSlice";
-import { ContinueWithGoogle } from "./components/ContinueWithGoogle";
+import google from "../Images/Google.png";
+import { useUserCreateMutation } from "../redux/features/auth/authApiSlice";
+import { ContinueWithGoogle } from "../components/ContinueWithGoogle";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -18,9 +18,8 @@ function Signup() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
+  const [setError] = useState("");
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false); // Define modal state
   const [role, setRole] = useState("farmer"); // Default value can be 'farmer'
 
   const validatePassword = (password, confirmPassword) => {

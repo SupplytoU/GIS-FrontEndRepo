@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { SideNavigation } from './SideNavigation';
+import React, { useState, useEffect } from 'react';
 import Section1 from './Section1'
 import Section2 from './Section2';
 import Section3 from './Section3'
@@ -10,8 +9,7 @@ import styles from './LandingPage.module.css';
 
 const Landing = () => {
   const [loading, setLoading] = useState(true);
-  const [showScroll, setShowScroll] = useState(false);
-  const section1Ref = useRef(null);
+  const [,setShowScroll] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,10 +31,6 @@ const Landing = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToSection1 = () => {
-    section1Ref.current.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const handleLoadingComplete = () => {
     console.log('Loading animation completed');

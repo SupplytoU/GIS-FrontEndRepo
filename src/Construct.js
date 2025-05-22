@@ -8,6 +8,7 @@ const Construct = () => {
     <div className='Construct'><img 
         src={construct}
         className='constimage'
+        alt='Construction'
     />
     <p>This page is still under construction. Stay tuned🙂 !</p> </div></>
   )

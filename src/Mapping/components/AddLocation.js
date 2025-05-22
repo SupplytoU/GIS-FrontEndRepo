@@ -88,7 +88,9 @@ const AddLocation = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!name || !latitude || !longitude) {
+    // Validate required fields
+    if (!name || !latitude || !longitude || !label || !region) {
+
       toast.error("Please fill in all required fields!");
       return;
     }
@@ -123,9 +125,15 @@ const AddLocation = ({ onAdd }) => {
     mapRef.current.flyTo([0, 38], 8);
   };
 
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  const navigate = useNavigate();
+
+  //Dark mode/light mode
+const [isDark] = useLocalStorage("isDark", false);
 
   return (
     <>
@@ -140,6 +148,7 @@ const AddLocation = ({ onAdd }) => {
           className={`form-sidebar-container ${isSidebarOpen ? 'open' : ''}`}
           data-theme={isDark ? "dark" : "mapping"}
         >
+
           <div className="nav-group">
             <button className="back-button" onClick={() => navigate("/View Locations")}>
               <FaArrowLeft /> <span className="home-text">Back</span>
@@ -177,6 +186,7 @@ const AddLocation = ({ onAdd }) => {
               <div className="form-control">
                 <label>Farm</label>
                 <select
+                  data-testid="farm-select"
                   value={farmName}
                   onChange={(e) => setFarmName(e.target.value)}
                   required

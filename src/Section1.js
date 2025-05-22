@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Section1.css";
 import logo from './Images/Logo1.png';
 import mainVideo from './Images/video.mp4';
-import Solutions from "./Dropdown/Solutions";
-import LoginIcon from "./LoginIcon";
+import LoginIcon from "./Authentication/LoginIcon";
 import { IoIosGlobe } from "react-icons/io";
 import { MdOutlineEmail } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
@@ -25,7 +24,7 @@ function Section1() {
     });
   }, []);
 
-  const words = ["Insights.", "Mapping.", "Tracking."];
+  const words = useMemo(() =>["Insights.", "Mapping.", "Tracking."] , []);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);

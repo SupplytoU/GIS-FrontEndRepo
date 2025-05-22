@@ -50,7 +50,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "server": "json-server --watch location-data.json --port 5000",
-    "test": "react-scripts test",
+    "test": "jest --ci",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -70,5 +70,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "babel-jest": "^29.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1"
   }
 }

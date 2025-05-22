@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Forgot.css';
-import image from './Images/Forgot password-pana.png';
+import image from '../Images/Forgot password-pana.png';
 
 const Forgot = () => {
   const emailReference = useRef(null);
@@ -40,7 +40,7 @@ const Forgot = () => {
     <>
       <div className="Forgotdiv">
         <div className="Forgotdiv-2">
-          <img loading="lazy" src={image} className="ForgotImg" />
+          <img loading="lazy" src={image} className="ForgotImg" alt='Forgot Password'/>
           <div className="ForgotPassword">
             FORGOT <br /> PASSWORD?
           </div>

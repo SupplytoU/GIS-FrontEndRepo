@@ -96,7 +96,7 @@ function MainMap({
       setIsLoading(false);
     }, 3000); // Adjust the timeout duration as needed
   }, []);
-
+  
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };

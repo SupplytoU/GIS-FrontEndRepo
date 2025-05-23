@@ -27,8 +27,7 @@ const AddField = ({ onAddField }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
     const sidebarRef = useRef();
-    const navigate = useNavigate();
-    const [isDark] = useLocalStorage("isDark", false);
+
 
     useEffect(() => {
         const fetchFarmers = async () => {

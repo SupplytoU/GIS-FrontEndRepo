@@ -130,11 +130,6 @@ const AddLocation = ({ onAdd }) => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const navigate = useNavigate();
-
-  //Dark mode/light mode
-const [isDark] = useLocalStorage("isDark", false);
-
   return (
     <>
       <div className="add-location-container">

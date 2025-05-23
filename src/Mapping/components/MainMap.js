@@ -16,8 +16,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import Geocoder from "./Geocoder";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
-import "./MainMap.css"; // Import the CSS file for button styling
-import MapLoading from "./MapLoading"; // Import the renamed MapLoading component
+import "./MainMap.css"; // Import the CSS file for button styling 
 import { FaArrowLeft } from "react-icons/fa"; // Import the arrow icon
 import useLocalStorage from "use-local-storage";
 import { FiMenu } from "react-icons/fi";
@@ -54,7 +53,7 @@ function MainMap({
   const [selectedProduce, setSelectedProduce] = useState("");
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [filteredFarms, setFilteredFarms] = useState(farms);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar state
   const sidebarRef = useRef();
   const navigate = useNavigate();
@@ -93,7 +92,7 @@ function MainMap({
   useEffect(() => {
     // Simulate a loading delay for demonstration purposes
     setTimeout(() => {
-      setIsLoading(false);
+      // setIsLoading(false);
     }, 3000); // Adjust the timeout duration as needed
   }, []);
   

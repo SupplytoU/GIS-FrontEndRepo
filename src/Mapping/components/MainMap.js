@@ -58,6 +58,7 @@ function MainMap({
   const sidebarRef = useRef();
   const navigate = useNavigate();
   const mapRef = useRef();
+  const [, setIsLoading] = useState(true);
 
   // Close sidebar when clicking outside
  useEffect(() => {
@@ -92,7 +93,7 @@ function MainMap({
   useEffect(() => {
     // Simulate a loading delay for demonstration purposes
     setTimeout(() => {
-      // setIsLoading(false);
+      setIsLoading(false);
     }, 3000); // Adjust the timeout duration as needed
   }, []);
   
@@ -129,12 +130,8 @@ function MainMap({
   const handleSearch = () => {
     const searchTermLower = searchTerm.toLowerCase();
 
-    let foundLocation = locations.find(
-      (location) => location.name.toLowerCase() === searchTermLower
-    );
-    let foundFarm = farms.find(
-      (farm) => farm.name.toLowerCase() === searchTermLower
-    );
+    let foundLocation = locations.find(location => location.name.toLowerCase() === searchTermLower);
+    let foundFarm = farms.find(farm => farm.name.toLowerCase() === searchTermLower);
 
     if (foundLocation) {
       toast.info(`Searching for: ${foundLocation.name}`);
@@ -191,21 +188,18 @@ function MainMap({
     );
   };
 
-  const applyFilters = (region, label, farmer, produce) => {
-    const filteredLocs = locations.filter((location) => {
+   const applyFilters = (region, label, farmer, produce) => {
+    const filteredLocs = locations.filter(location => {
       return (
         (!region || location.region === region) &&
         (!label || location.label === label)
       );
     });
 
-    const filteredFarms = farms.filter((farm) => {
+    const filteredFarms = farms.filter(farm => {
       return (
         (!farmer || farm.farmer === farmer) &&
-        (!produce ||
-          farm.produce.some(
-            (produceItem) => produceItem.produce_type === produce
-          ))
+        (!produce || farm.produce.some(produceItem => produceItem.produce_type === produce))
       );
     });
 

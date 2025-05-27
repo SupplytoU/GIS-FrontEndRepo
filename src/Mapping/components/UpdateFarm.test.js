@@ -1,7 +1,8 @@
 // UpdateFarm.test.js
 
 import "@testing-library/jest-dom/extend-expect";
-import React, { act } from "react";
+import React from "react";
+import { act } from "react";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { LeafletProvider } from "@react-leaflet/core";

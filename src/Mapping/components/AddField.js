@@ -21,13 +21,12 @@ const AddField = ({ onAddField }) => {
     const [description, setDescription] = useState('');
     const [produce, setProduce] = useState([{ produce_type: '', variety: '' }]);
     const [farmer, setFarmer] = useState('');
-    const [farmArea] = useState('');
+    const [farmArea, setFarmArea] = useState('');
     const [farmers, setFarmers] = useState([]);
     const [notification, setNotification] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
     const sidebarRef = useRef();
-
 
     useEffect(() => {
         const fetchFarmers = async () => {
@@ -66,7 +65,7 @@ const AddField = ({ onAddField }) => {
         e.preventDefault();
 
         if (!drawnCoordinates || !farmArea) {
-            setNotification("Please draw the farm area on the map before saving.");
+            setNotification("Please draw the farm area on the map and input the area in acres before saving.");
             setTimeout(() => {
                 setNotification("");
             }, 3000);
@@ -91,6 +90,7 @@ const AddField = ({ onAddField }) => {
             setProduce([{ produce_type: '', variety: '' }]);
             setFarmer('');
             setDrawnCoordinates('');
+            setFarmArea('');
             setIsModalOpen(true);
             toast.success("Field added successfully!");
         } catch (error) {
@@ -98,7 +98,6 @@ const AddField = ({ onAddField }) => {
             toast.error("Error adding field. Please try again.");
         }
     };
-
 
     const handleCreated = (e) => {
         const type = e.layerType;
@@ -115,12 +114,9 @@ const AddField = ({ onAddField }) => {
             toast.info("Field area drawn successfully!");
         }
     };
-    const navigate = useNavigate();
-//   const handleUpdate = (id, type) => {
-//     navigate(`/update-${type}/${id}`);
-//   };
 
-  const [isDark] = useLocalStorage("isDark", false);
+    const navigate = useNavigate();
+    const [isDark] = useLocalStorage("isDark", false);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -220,6 +216,16 @@ const AddField = ({ onAddField }) => {
                                     </option>
                                 ))}
                             </select>
+                        </div>
+                        <div className="form-control">
+                            <label>Farm Area (in acres)</label>
+                            <input
+                                type="number"
+                                value={farmArea}
+                                onChange={(e) => setFarmArea(e.target.value)}
+                                placeholder="Enter area in acres"
+                                required
+                            />
                         </div>
                         <div className='form-control'>
                             <label>Farm Area Coordinates</label>

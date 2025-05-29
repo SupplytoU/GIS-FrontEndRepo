@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IoIosMenu } from "react-icons/io";
 import styles from './Section1.module.css';
 import mainVideo from './video.mp4';
+import { Link } from 'react-router-dom';
 
 function CombinedSection() {
   const [fadeInClass, setFadeInClass] = useState('');
@@ -59,7 +60,7 @@ function CombinedSection() {
             <div className={`${styles.navLinks} ${styles.desktopNav}`}>
               <a href='https://supply2u.jhubafrica.com/' className={styles.navItem}>About Us</a>
               <a href='https://supply2u.jhubafrica.com/#solutions' className={styles.navItem}>Our Solutions</a>
-              <div className={styles.navItem}>Contact Us</div>
+              <Link to= "/Contact Us" className={styles.navItem}>Contact Us</Link>
             </div>
 
             {/* Mobile Navigation - Menu Icon */}

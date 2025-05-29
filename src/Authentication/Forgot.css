@@ -1,115 +1,140 @@
-/* Base styles */
-.Forgotdiv {
-  background-color: #fff;
-  height: 100vh;
-  color: #000000;
-  padding-top: 8vh;
-}
-
-.ForgotImg {
-  position: absolute;
-  inset: 0;
-  height: 100vh;
-  width: auto;
-  object-fit: fill;
-  object-position: center;
-  margin-left: 17%;
-}
-
-.ForgotPassword {
-  position: relative;
-  align-self: start;
-  margin-top: 0%;
-  margin-left: 6%;
-  font: 700 50px Kantumruy, sans-serif;
-  z-index: 3;
-}
-
-.Content {
-  position: relative;
+/* Forgot.css */
+.forgot-container {
   display: flex;
-  width: 450px;
-  flex-direction: column;
-  font-weight: 400;
-  text-align: center;
-  margin-top: -6%;
-  margin-left: 65%;
-}
-
-.Details {
-  margin-top: 11%;
-  margin-left: 40.5%;
-  position: relative;
-  text-align: center;
-  font: 15px Kantumruy, sans-serif;
-  width: 18%;
-  font-weight: 500;
-}
-
-input[type="ResetEmail"] {
-  padding: 5px;
-  margin-bottom: 10%;
-  margin-right: 20%;
-  border: 1px solid #000000;
-  border-radius: 5px;
-  font-size: 15px;
-  width: 60%;
-}
-
-input[type="ResetEmail"]::placeholder {
-  color: #646464;
-}
-
-.ResetButton {
-  border-radius: 7px;
-  border-width: 1px;
-  background-color: #0c920a;
-  align-self: center;
-  color: #fff;
   justify-content: center;
-  padding: 6px 4px;
-  font: 500 14px Kantumruy, sans-serif;
-  margin-right: 20%;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff;
+  padding: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.forgot-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  gap: 4rem;
+}
+
+.forgot-image {
+  width: 50%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+}
+
+.forgot-form-container {
+  width: 50%;
+  max-width: 450px;
+}
+
+.forgot-title {
+  font-family: 'Kantumruy', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #000;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.forgot-instructions {
+  font-family: 'Kantumruy', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.forgot-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Kantumruy', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0c920a;
+}
+
+.error-message {
+  color: #d32f2f;
+  font-family: 'Kantumruy', sans-serif;
+  font-size: 0.875rem;
+  margin-top: -0.5rem;
+}
+
+.reset-button {
+  background-color: #0c920a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Kantumruy', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s;
+  width: fit-content;
 }
 
-.Success {
-  font-size: 22px;
-  margin-right: 22%;
-  margin-top: 0%;
+.reset-button:hover {
+  background-color: #0a7a08;
 }
 
-.setResetError {
-  margin-bottom: 0%;
+.success-message {
+  font-family: 'Kantumruy', sans-serif;
+  font-size: 1.25rem;
+  color: #0c920a;
+  line-height: 1.5;
+  text-align: center;
+  padding: 1rem;
 }
 
 /* Responsive styles */
-@media screen and (max-width: 991px) {
-  .ForgotImg {
-    object-fit: contain;
-    height: 100%;
+@media (max-width: 992px) {
+  .forgot-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .forgot-image,
+  .forgot-form-container {
     width: 100%;
-    margin-left: 0%;
-    margin-top: -10vh;
+    max-width: 100%;
   }
 
-  .ForgotPassword {
-    font-size: 40px;
+  .forgot-title {
+    font-size: 2rem;
+    text-align: center;
   }
 
-  .Content {
-    margin: 340px 10px 40px 20px;
+  .forgot-instructions {
+    text-align: center;
   }
 
-  .Details {
-    margin-top: 48%;
-    margin-left: 51%;
-    width: 40%;
-    font-size: 12px;
+  .reset-button {
+    width: 100%;
   }
+}
 
-  .ResetEmail {
-    margin-top: -29%;
-    padding: 0 20px;
+@media (max-width: 576px) {
+  .forgot-title {
+    font-size: 1.75rem;
+  }
+  
+  .forgot-container {
+    padding: 1rem;
   }
 }

@@ -13,8 +13,8 @@ const ForgotPassword = () => {
   }, []);
 
   useEffect(() => {
-    if (error) setError('');
-  }, [email]);
+      setError('');
+    }, [email]);
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

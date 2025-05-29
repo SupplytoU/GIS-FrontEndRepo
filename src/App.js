@@ -27,7 +27,6 @@ import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
 import Landing from './Landing Page/Landing.js';
-import FAQs from './Landing Page/FAQs.js';
 import WelcomePage from './WelcomePage';
 // MAPPING
 import AddLocation from './Mapping/components/AddLocation.js';

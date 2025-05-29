@@ -43,7 +43,7 @@ const Landing = () => {
       <>
     <div className={styles.container}>
       <div className={styles.content}>
-        <div class name= {styles.section1}>
+        <div className= {styles.section1}>
         {/* <SideNavigation /> */}
         <Section1 /></div>
         <Section2/>

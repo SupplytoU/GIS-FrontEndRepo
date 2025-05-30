@@ -2,81 +2,83 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Forgot.css';
 import image from '../Images/Forgot password-pana.png';
 
-const Forgot = () => {
-  const emailReference = useRef(null);
-
-  const [ResetEmail, setResetEmail] = useState('');
-  const [ResetError, setResetError] = useState('');
-  const [ResetSuccess, setResetSuccess] = useState(false);
+const ForgotPassword = () => {
+  const emailRef = useRef(null);
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    if (emailReference.current) {
-      emailReference.current.focus();
-    }
+    emailRef.current?.focus();
   }, []);
 
   useEffect(() => {
-    setResetError('');
-  }, [ResetEmail]);
+      setError('');
+    }, [email]);
 
   const isValidEmail = (email) => {
-    // Regular expression for basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const handleResetSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isValidEmail(ResetEmail)) {
-      setResetError('Please enter a valid email address.');
+    if (!isValidEmail(email)) {
+      setError('Please enter a valid email address.');
       return;
     }
-    console.log(ResetEmail);
-    setResetSuccess(true);
-    setResetEmail('');
+    console.log(email);
+    setSuccess(true);
+    setEmail('');
   };
 
   return (
-    <>
-      <div className="Forgotdiv">
-        <div className="Forgotdiv-2">
-          <img loading="lazy" src={image} className="ForgotImg" alt='Forgot Password'/>
-          <div className="ForgotPassword">
-            FORGOT <br /> PASSWORD?
-          </div>
+    <div className="forgot-container">
+      <div className="forgot-content">
+        <img 
+          src={image} 
+          className="forgot-image" 
+          alt="Forgot Password Illustration" 
+          loading="lazy"
+        />
+        
+        <div className="forgot-form-container">
+          <h1 className="forgot-title">FORGOT PASSWORD?</h1>
           
-            <div className="Details">
-              Enter the email associated with your account and we'll send an
-              email with instructions to reset your password.
+          <p className="forgot-instructions">
+            Enter the email associated with your account and we'll send an email 
+            with instructions to reset your password.
+          </p>
+          
+          {!success ? (
+            <form onSubmit={handleSubmit} className="forgot-form">
+              <div className="form-group">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Email Address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  ref={emailRef}
+                  required
+                />
+              </div>
+              
+              {error && <div className="error-message">{error}</div>}
+              
+              <button type="submit" className="reset-button">
+                Reset Password
+              </button>
+            </form>
+          ) : (
+            <div className="success-message">
+              Reset instructions have been sent to your email.
             </div>
-            <div className="Content">
-            {!ResetSuccess ? (
-              <section>
-                <form onSubmit={handleResetSubmit}>
-                  <div className="ResetEmail">
-                    <input
-                      type="ResetEmail"
-                      id="ResetEmail"
-                      name="ResetEmail"
-                      placeholder="Email Address"
-                      value={ResetEmail}
-                      onChange={(e) => setResetEmail(e.target.value)}
-                      ref={emailReference}
-                      required
-                    />
-                  </div>
-                  {ResetError && <div className="Error">{ResetError}</div>}
-                  <button type="submit" className="ResetButton">Reset Password</button>
-                </form>
-              </section>
-            ) : (
-              <div className="Success">Reset instructions have been <br/>sent to your email.</div>
-            )}
-          </div>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Forgot;
+export default ForgotPassword;

@@ -29,7 +29,7 @@ const AddField = ({ onAddField }) => {
     const fetchFarmers = async () => {
       try {
         const res = await axiosInstance.get(
-          "/fieldmapping/farmers/"
+          "/api/fieldmapping/farmers/"
         );
         setFarmers(res.data);
       } catch (error) {

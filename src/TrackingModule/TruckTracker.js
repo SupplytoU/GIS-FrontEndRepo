@@ -116,6 +116,45 @@ const TruckTracker = () => {
     }
   }, [smoothRotateMarker]);
 
+  const handleGetRoute = useCallback((destinationLatLng) => {
+    if (!destinationLatLng) {
+      alert("Please select a destination");
+      return;
+    }
+
+    const directionsService = new window.google.maps.DirectionsService();
+    const origin = new window.google.maps.LatLng(
+      currentLocationRef.current.lat,
+      currentLocationRef.current.lng
+    );
+
+    const request = {
+      origin,
+      destination: destinationLatLng,
+      travelMode: window.google.maps.TravelMode.DRIVING,
+    };
+
+    directionsService.route(request, (result, status) => {
+      if (status === window.google.maps.DirectionsStatus.OK) {
+        directionsRendererRef.current.setDirections(result);
+
+        if (destinationMarkerRef.current) {
+          destinationMarkerRef.current.setMap(null);
+        }
+
+        destinationMarkerRef.current = new window.google.maps.Marker({
+          position: destinationLatLng,
+          map: directionsRendererRef.current.getMap(),
+        });
+
+        directionsRendererRef.current.getMap().fitBounds(result.routes[0].bounds);
+      } else {
+        console.error("Error fetching directions: ", status);
+        alert("Could not find a route to the destination.");
+      }
+    });
+  }, []);
+
   const initializeMap = useCallback(() => {
     if (!directionsRendererRef.current && mapRef.current) {
       const map = new window.google.maps.Map(mapRef.current, {
@@ -163,46 +202,7 @@ const TruckTracker = () => {
 
       autocompleteRef.current = autocomplete;
     }
-  }, [location, heading]);
-
-  const handleGetRoute = useCallback((destinationLatLng) => {
-    if (!destinationLatLng) {
-      alert("Please select a destination");
-      return;
-    }
-
-    const directionsService = new window.google.maps.DirectionsService();
-    const origin = new window.google.maps.LatLng(
-      currentLocationRef.current.lat,
-      currentLocationRef.current.lng
-    );
-
-    const request = {
-      origin,
-      destination: destinationLatLng,
-      travelMode: window.google.maps.TravelMode.DRIVING,
-    };
-
-    directionsService.route(request, (result, status) => {
-      if (status === window.google.maps.DirectionsStatus.OK) {
-        directionsRendererRef.current.setDirections(result);
-
-        if (destinationMarkerRef.current) {
-          destinationMarkerRef.current.setMap(null);
-        }
-
-        destinationMarkerRef.current = new window.google.maps.Marker({
-          position: destinationLatLng,
-          map: directionsRendererRef.current.getMap(),
-        });
-
-        directionsRendererRef.current.getMap().fitBounds(result.routes[0].bounds);
-      } else {
-        console.error("Error fetching directions: ", status);
-        alert("Could not find a route to the destination.");
-      }
-    });
-  }, []);
+  }, [location, heading, handleGetRoute]); // <-- FIXED: Added handleGetRoute
 
   const handleDestinationChange = (e) => setDestination(e.target.value);
 

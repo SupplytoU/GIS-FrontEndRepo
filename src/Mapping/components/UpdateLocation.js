@@ -51,7 +51,7 @@ const UpdateLocation = ({farms, onUpdate }) =>
 
 
   useEffect(() => {
-    axiosInstance.get('http://localhost:8000/api/fieldmapping/locations/' + id)
+    axiosInstance.get('https://gis-backend-1c87.onrender.com/api/fieldmapping/locations/' + id)
       .then(response => {
         setLocation(response.data);
       })

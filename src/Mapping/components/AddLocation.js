@@ -49,7 +49,7 @@ const AddLocation = ({ onAdd }) => {
 
   useEffect(() => {
     const fetchFarms = async () => {
-      const res = await axiosInstance.get("http://localhost:8000/api/fieldmapping/farms/");
+      const res = await axiosInstance.get("https://gis-backend-1c87.onrender.com/api/fieldmapping/farms/");
       setFarms(res.data); // Update farms state
     };
 

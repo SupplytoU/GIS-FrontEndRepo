@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { logout, setAuth } from "./features/auth/authSlice";
 import { Mutex } from "async-mutex";
 
-const baseUrl = "http://127.0.0.1:8000/";
+const baseUrl = "https://gis-backend-1c87.onrender.com/";
 const mutex = new Mutex();
 const baseQuery = fetchBaseQuery({
 	baseUrl: baseUrl,

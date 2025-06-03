@@ -10,7 +10,7 @@ function ActivationPage() {
   useEffect(() => {
     const activateUser = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/users/activation/`, {
+        const response = await fetch(`https://gis-backend-1c87.onrender.com//api/users/activation/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

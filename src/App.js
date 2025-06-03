@@ -38,6 +38,8 @@ import UpdateFarm from './Mapping/components/UpdateFarm';
 import ActivationPage from './ActivationPage';
 import Google from './ContinueWithGoogle.js';
 import axiosInstance from './utils/axiosInstance.js';
+import TruckTracker from './TrackingModule/TruckTracker';
+
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -179,6 +181,7 @@ function App() {
             <Route path="/Change Password" element={<SettingsPass />} />
             <Route path="/FAQs" element={<FAQs />} />
             <Route path="/Soon" element={<Construct />} />
+            <Route path="/truck-tracking" element={<TruckTracker />} />
             <Route
               path="/View Locations"
               element={

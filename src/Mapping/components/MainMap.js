@@ -106,9 +106,7 @@ function MainMap({
     );
     if (confirmDelete) {
       try {
-        await axiosInstance.delete(
-          `http://localhost:8000/api/fieldmapping/${type}/${id}`
-        );
+        await axiosInstance.delete(`https://gis-backend-1c87.onrender.com/api/fieldmapping/${type}/${id}`);
         toast.success(`${type} deleted successfully!`);
         window.location.reload(); // Reload the page to reflect changes
       } catch (error) {

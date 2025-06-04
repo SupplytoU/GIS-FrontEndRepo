@@ -27,7 +27,6 @@ import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
 import Landing from './Landing Page/Landing.js';
-import FAQs from './Landing Page/FAQs.js';
 import WelcomePage from './WelcomePage';
 // MAPPING
 import AddLocation from './Mapping/components/AddLocation.js';
@@ -38,6 +37,8 @@ import UpdateFarm from './Mapping/components/UpdateFarm';
 import ActivationPage from './ActivationPage';
 import Google from './ContinueWithGoogle.js';
 import axiosInstance from './utils/axiosInstance.js';
+import TruckTracker from './TrackingModule/TruckTracker';
+
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -177,8 +178,9 @@ function App() {
             <Route path="/LoginIcon" element={<LoginIcon />} />
             <Route path="/Footer" element={<Footer />} />
             <Route path="/Change Password" element={<SettingsPass />} />
-            <Route path="/FAQs" element={<FAQs />} />
+            <Route path="/FAQs" element={<Help />} />
             <Route path="/Soon" element={<Construct />} />
+            <Route path="/truck-tracking" element={<TruckTracker />} />
             <Route
               path="/View Locations"
               element={

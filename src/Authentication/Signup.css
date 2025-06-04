@@ -2,11 +2,20 @@
 
 .Signup-container {
   display: flex;
-  height: 80vh;
+  height: 100vh;
   background-color: var(--background-color);
-  color: #000;
+  color: var(--text-color);
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+.SigninWithGoogle{
+  background-color: var(--foreground-color);
+  width: 20vw;
+  border-color: var(--text-color);
+}
+
+.Signup2{
+  color: var(--text-color);
 }
 
 .image-container {
@@ -48,7 +57,7 @@
 
 .login-section a {
   text-decoration: none;
-  color: #fff;
+  color: var(--text-color);
   font-weight: 500;
 }
 
@@ -95,15 +104,14 @@
   text-align: center;
   margin: 0px 0;
   color: var(--text-color);
-  margin-top: 2vh;
-  margin-bottom: -1vh;
 }
 .signup-button {
   border-radius: 10px;
   border-color: rgba(255, 255, 255, 0);
   background-color: #136b04;
   align-self: center;
-  margin-top: 1vh;
+  margin-top: 3vh;
+  margin-bottom: 2vh;
   width: 20vw;
   font-weight: 500;
   padding: 4px;
@@ -196,6 +204,7 @@ input[type="message"], input[type="email"], input[type="password"] {
   align-items: center;
   margin-bottom: 1em;
   font-size: 13px;
+  color: var(--text-color);
 }
 
 .show-password-container input {
@@ -219,9 +228,8 @@ input[type="message"], input[type="email"], input[type="password"] {
   border: 1.7px solid #ddd;
   color: var(--text-color);
   border-radius: 5px;
-  background-color: #fff;
-  color: #000;
-  /* color: #333; */
+  background-color: var(--foreground-color);
+  color: var(--text-color);
   cursor: pointer;
   transition: border-color 0.3s ease-in-out;
 }
@@ -244,7 +252,8 @@ input[type="message"], input[type="email"], input[type="password"] {
   .LoginContainer {
     display: flex;
     gap: 0;
-    background-image: url('../Images/Signup.jpeg');
+    /* background-image: url('../Images/Signup.jpeg'); */
+    background-color: #ddd;
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -270,11 +279,11 @@ input[type="message"], input[type="email"], input[type="password"] {
   }
 
   .GSect {
-    background: rgba(11, 0, 0, 0.05);
+    background: rgb(255, 255, 255);
     border-radius: 15px;
     box-shadow: 0 4px 30px rgba(141, 141, 141, 0);
     backdrop-filter: blur(0px);
-    border: 1px solid rgba(255, 255, 255, 0.617);
+    border: 1px solid rgb(255, 255, 255);
     color: rgb(255, 255, 255);
     padding: 2rem;
     padding-top: 4rem;
@@ -289,15 +298,15 @@ input[type="message"], input[type="email"], input[type="password"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgb(255, 255, 255);
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
   }
 
   .OR {
-    color: #ffffff;
-    margin-top: -25vh;
+    color: #000000;
     margin-right: 0rem;
+    margin-top: -25vh;
   }
 
   .signup-button {
@@ -305,11 +314,9 @@ input[type="message"], input[type="email"], input[type="password"] {
     border-color: rgba(255, 255, 255, 0);
     background-color: #136b04;
     align-self: center;
-    margin-top: 2vh;
-    width: 23vw;
     font-weight: 500;
     padding: 5px;
-    max-width: 100%;
+    width: 100%;
     color: #fff;
     font: 400 15px Inter, sans-serif;
   }
@@ -333,7 +340,7 @@ input[type="message"], input[type="email"], input[type="password"] {
     margin-top: -95vh;
     margin-bottom: 7vh;
     font: 600 50px 'Inter', sans-serif;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
   }
 
@@ -371,7 +378,7 @@ input[type="message"], input[type="email"], input[type="password"] {
     padding: 5px;
     width: 100%;
     border: none;
-    border-bottom: 1.5px solid #ffffff;
+    border-bottom: 1.5px solid #000000;
     border-radius: 0;
     font-size: 15px;
     outline: none;

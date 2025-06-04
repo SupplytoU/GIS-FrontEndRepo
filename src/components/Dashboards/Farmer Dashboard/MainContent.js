@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './FarmerDashboard.css';
 import useLocalStorage from 'use-local-storage';
 import Example from './CropChart';
@@ -23,7 +23,7 @@ const MainContent = () => {
 
     const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
-    const fetchWeatherData = async (type) => {
+    const fetchWeatherData = useCallback(async (type = 'temperature') => {
         if (!apiKey) {
             setError("Weather API key is not configured. Please contact support.");
             return;
@@ -49,11 +49,11 @@ const MainContent = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [apiKey, location]);
 
     useEffect(() => {
         fetchWeatherData('temperature');
-    }, [location]);
+    }, [fetchWeatherData]);
 
     const formatTime = (timeString) => {
         const date = new Date(timeString);
@@ -148,7 +148,7 @@ const MainContent = () => {
                         <div className='CropsList'>
                             {['Maize', 'Beans', 'Coffee', 'Tea', 'Wheat', 'Potatoes'].map((crop, index) => (
                                 <div key={index} className='CropItem'>
-                                    <span className='CropIcon'>{cropIcons[crop]}</span>
+                                    <span className='CropIcon'>{cropIcons[crop] || '🌱'}</span>
                                     <span className='CropName'>{crop}</span>
                                 </div>
                             ))}

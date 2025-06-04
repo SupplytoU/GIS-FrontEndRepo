@@ -31,13 +31,12 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
 
 
   useEffect(() => {
-    axiosInstance.get('http://localhost:8000/api/fieldmapping/farms/' + id)
+    axiosInstance.get('https://gis-backend-1c87.onrender.com/api/fieldmapping/farms/' + id)
       .then(response => {
         setFarm(response.data);
       })
       .catch(error => {
         toast.error('Error fetching farm data');
-        console.error("There was an error fetching the farm data!", error);
       });
   }, [id]);
 
@@ -60,11 +59,10 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
   useEffect(() => {
     const fetchFarmers = async () => {
       try {
-        const res = await axiosInstance.get('http://localhost:8000/api/fieldmapping/farmers');
+        const res = await axiosInstance.get('https://gis-backend-1c87.onrender.com/api/fieldmapping/farmers');
         setFarmers(res.data);
       } catch (error) {
         toast.error('Error fetching farmers data');
-        console.error('Error fetching farmers:', error);
       }
     };
     fetchFarmers();
@@ -78,7 +76,10 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
 
   const handleFieldUpdate = async (e) => {
     e.preventDefault();
-
+    if (!name || !description || !produce[0].produce_type || !produce[0].variety || !farmer || !farmArea) {
+      toast.error("Please fill in all required fields!");
+      return;
+    }
     const updatedFarm = {
       ...farm,
       name,
@@ -139,13 +140,17 @@ console.log(polygonString);
   return (
     <>
       <div className="add-location-container">
-        <div className="form-sidebar-container" data-theme={isDark ? "dark" : "mapping"}>
+        <div
+          className="form-sidebar-container"
+          data-theme={isDark ? "dark" : "mapping"}
+        >
           <form className="add-field-form" onSubmit={handleFieldUpdate}>
             <h2>Update Field Drawing</h2>
             {notification && <div className="notification">{notification}</div>}
             <div className="form-control">
               <label>Field Name</label>
               <input
+                data-testid="farm-name-input"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -187,7 +192,7 @@ console.log(polygonString);
                 </div>
               ))}
               <button
-              className='btnlocation'
+                className="btnlocation"
                 type="button"
                 onClick={() =>
                   setProduce([...produce, { produce_type: "", variety: "" }])
@@ -223,6 +228,7 @@ console.log(polygonString);
             <div className="form-control">
               <label>Farm Area Coordinates</label>
               <textarea
+                data-testid="farm-area-textarea"
                 value={farmArea}
                 onChange={(e) => setFarmArea(e.target.value)}
                 rows="5"
@@ -230,7 +236,9 @@ console.log(polygonString);
                 required
               />
             </div>
-            <button className="btnlocation" type="submit">Update Field</button>
+            <button className="btnlocation" type="submit">
+              Update Field
+            </button>
           </form>
         </div>
         <MapContainer
@@ -240,7 +248,6 @@ console.log(polygonString);
           ref={mapRef}
           whenReady={() => setMapReady(true)}
           error={(err) => {
-            console.error("Map loading error:", err);
             toast.error(
               "Failed to load the map. Please try refreshing the page."
             );
@@ -266,6 +273,7 @@ console.log(polygonString);
           </LayersControl>
           <FeatureGroup>
             <EditControl
+              data-testid="edit-control"
               position="topright"
               onEdited={handleEdited}
               onCreated={handleCreated}

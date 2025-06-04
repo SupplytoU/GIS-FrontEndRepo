@@ -49,7 +49,7 @@ const AddLocation = ({ onAdd }) => {
 
   useEffect(() => {
     const fetchFarms = async () => {
-      const res = await axiosInstance.get("http://localhost:8000/api/fieldmapping/farms/");
+      const res = await axiosInstance.get("https://gis-backend-1c87.onrender.com/api/fieldmapping/farms/");
       setFarms(res.data); // Update farms state
     };
 
@@ -71,7 +71,7 @@ const AddLocation = ({ onAdd }) => {
     e.preventDefault();
 
     // Validate required fields
-    if (!name || !latitude || !longitude) {
+    if (!name || !latitude || !longitude || !label || !region) {
       toast.error("Please fill in all required fields!");
       return;
     }
@@ -121,10 +121,13 @@ const [isDark] = useLocalStorage("isDark", false);
           className="form-sidebar-container"
           data-theme={isDark ? "dark" : "mapping"}
         >
-           <button className="back-button" onClick={() => navigate("/View Locations")}>
-                    <FaArrowLeft /> <span className="home-text">Back</span>
-                      </button>
-      
+          <button
+            className="back-button"
+            onClick={() => navigate("/View Locations")}
+          >
+            <FaArrowLeft /> <span className="home-text">Back</span>
+          </button>
+
           <form className="add-location-form" onSubmit={onSubmit}>
             <h2 className="LocationTitle">Enter Location Details</h2>
             <div className="form-control">
@@ -156,6 +159,7 @@ const [isDark] = useLocalStorage("isDark", false);
               <div className="form-control">
                 <label>Farm</label>
                 <select
+                  data-testid="farm-select"
                   value={farmName}
                   onChange={(e) => setFarmName(e.target.value)}
                   required
@@ -220,7 +224,6 @@ const [isDark] = useLocalStorage("isDark", false);
               className="btnlocation"
             />
           </form>
-  
         </div>
         <MapContainer
           center={[0, 38]}

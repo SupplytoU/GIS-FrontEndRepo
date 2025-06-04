@@ -51,13 +51,12 @@ const UpdateLocation = ({farms, onUpdate }) =>
 
 
   useEffect(() => {
-    axiosInstance.get('http://localhost:8000/api/fieldmapping/locations/' + id)
+    axiosInstance.get('https://gis-backend-1c87.onrender.com/api/fieldmapping/locations/' + id)
       .then(response => {
         setLocation(response.data);
       })
       .catch(error => {
         toast.error('Error fetching location data');
-        console.error("There was an error fetching the location data!", error);
       });
   }, [id]);
 
@@ -172,6 +171,7 @@ const UpdateLocation = ({farms, onUpdate }) =>
               <div className="form-control">
                 <label>Farm</label>
                 <select
+                  data-testid="farm-select"
                   value={farmName}
                   onChange={(e) => setFarmName(e.target.value)}
                 >

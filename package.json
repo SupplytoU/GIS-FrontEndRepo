@@ -41,6 +41,7 @@
     "react-spinners": "^0.14.1",
     "react-toastify": "^10.0.6",
     "reactour": "^1.19.4",
+    "recharts": "^2.15.3",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "source-map-loader": "^5.0.0",

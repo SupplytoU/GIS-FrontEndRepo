@@ -14,6 +14,7 @@
     --foreground-color:rgb(0, 0, 0);
     --primary-text-color:rgb(179, 178, 178);
     --secondary-text-color:#136b04;
+    --extra-text-color: rgb(205, 205, 205);
     --text-color:white;
     --color-text:rgb(222, 222, 222);
     --toggle-bg: rgba(248, 249, 204, 0.769);
@@ -25,6 +26,7 @@
     --background-color: #f5f5f5;
     --foreground-color:rgb(255, 255, 255);
     --primary-text-color:rgb(0, 0, 0);
+    --extra-text-color: #515151;
     --secondary-text-color:#02570a;
     --toggle-bg: rgb(1, 1, 19);
     --toggle-fg: #03A9F8;

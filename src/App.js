@@ -38,7 +38,7 @@ import ActivationPage from './ActivationPage';
 import Google from './ContinueWithGoogle.js';
 import axiosInstance from './utils/axiosInstance.js';
 import TruckTracker from './TrackingModule/TruckTracker';
-
+import FarmerDashboard from './components/Dashboards/Farmer Dashboard/FarmerDashboard.js';
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -207,6 +207,8 @@ function App() {
             <Route path="/activate/:uidb64/:token" element={<ActivationPage />} /> {/* New activation route */}
             <Route path="/auth/google/" element={<Google/>}/>
             <Route path="/" element={<Landing/>}/>
+            <Route path="/Farmer Dashboard" element={<FarmerDashboard/>}/>
+
           </Routes>
         </CustomProvider>
       </Router>

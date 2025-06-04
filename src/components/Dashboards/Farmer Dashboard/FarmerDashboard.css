@@ -1,0 +1,252 @@
+.FarmerDashboard {
+  display: flex;
+  height: 100vh;
+  background-color: #f0f0f0;
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-color);
+}
+
+/* Sidebar */
+.FarmerSidebar {
+  width: 18vw;
+  background-color: var(--foreground-color);
+  padding: 20px 2vw 20px 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #ccc;
+}
+
+.DashTitle {
+  background-color: #0d5400;
+  color: white;
+  font-size: 1.6rem;
+  width: fit-content;
+  padding: 6px 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.DashboardIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.FarmerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 60px;
+}
+
+.FarmerLinks div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.FarmerLinks div:hover {
+  color: #0d5400;
+}
+
+.FarmerLogout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #555;
+  cursor: pointer;
+  padding-left: 10px;
+  margin-top: auto;
+}
+
+.LogoutIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Main Content */
+.DashboardContent {
+  width: 82vw;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f4f4f4;
+}
+
+.FarmerHeader {
+  background-color: white;
+  padding: 15px 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  border-radius: 8px;
+}
+
+.FarmerContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.LeftColumn, .RightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 48%;
+}
+
+.WidgetBox {
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.WeatherSection h3,
+.MyCropsSection h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.WeatherButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.WeatherButton {
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1px solid #0d5400;
+  background-color: white;
+  color: #0d5400;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.WeatherButton.active,
+.WeatherButton:hover {
+  background-color: #0d5400;
+  color: white;
+}
+
+.WeatherDisplay {
+  height: 100px;
+  background-color: #ddd;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.CropsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+  color: #111;
+  padding-left: 10px;
+}
+
+.CropItem {
+  padding: 8px;
+  background-color: var(--card-bg);
+  border-radius: 4px;
+}
+
+.MapSnippet {
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.MapSnippet img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.MapSnippet button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.CropChart {
+  height: 200px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ChartLegend {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  align-items: center;
+}
+
+.ChartLegend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ChartLegend .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot.beans { background-color: #0d5400; }
+.dot.maize { background-color: #000; }
+.dot.wheat { background-color: #f9b233; }
+
+.ToggleContainer {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+}
+
+.PlaceMarker {
+  width: 25px;
+  height: 25px;
+}
+
+.Location {
+  display: flex;
+  gap: 25px;
+  margin-top: 0;
+}
+
+p {
+  color: var(--extra-text-color);
+  font-weight: 500;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}

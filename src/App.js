@@ -37,6 +37,7 @@ import UpdateFarm from './Mapping/components/UpdateFarm';
 import ActivationPage from './ActivationPage';
 import Google from './ContinueWithGoogle.js';
 import axiosInstance from './utils/axiosInstance.js';
+import TruckTracker from './TrackingModule/TruckTracker';
 import FarmerDashboard from './components/Dashboards/Farmer Dashboard/FarmerDashboard.js';
 
 function App() {
@@ -179,6 +180,7 @@ function App() {
             <Route path="/Change Password" element={<SettingsPass />} />
             <Route path="/FAQs" element={<Help />} />
             <Route path="/Soon" element={<Construct />} />
+            <Route path="/truck-tracking" element={<TruckTracker />} />
             <Route
               path="/View Locations"
               element={

@@ -26,7 +26,7 @@ const Solutions  = () => {
           <span className="solution-arrow"><FaChevronDown/></span>
           {dropdownVisible && (
             <ul className="dropdown">
-              <Link to='/truck-tracking'><li className="dropdown-item">Track An Order</li></Link>
+              <Link to='/truck-tracking'><li className="dropdown-item">Live Tracker</li></Link>
               <Link to='/View Locations'><li className="dropdown-item">View Locations</li></Link>
               <Link to=''><li className="dropdown-item">View Analytics</li></Link>
             </ul>

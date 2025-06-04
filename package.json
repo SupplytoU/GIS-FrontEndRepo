@@ -48,7 +48,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build":  "react-scripts build --no-sourcemaps",
     "server": "json-server --watch location-data.json --port 5000",
     "test": "jest --ci",
     "eject": "react-scripts eject"

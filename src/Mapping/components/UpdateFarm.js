@@ -31,7 +31,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
 
 
   useEffect(() => {
-    axiosInstance.get('http://localhost:8000/api/fieldmapping/farms/' + id)
+    axiosInstance.get('https://gis-backend-1c87.onrender.com/api/fieldmapping/farms/' + id)
       .then(response => {
         setFarm(response.data);
       })
@@ -59,7 +59,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
   useEffect(() => {
     const fetchFarmers = async () => {
       try {
-        const res = await axiosInstance.get('http://localhost:8000/api/fieldmapping/farmers');
+        const res = await axiosInstance.get('https://gis-backend-1c87.onrender.com/api/fieldmapping/farmers');
         setFarmers(res.data);
       } catch (error) {
         toast.error('Error fetching farmers data');

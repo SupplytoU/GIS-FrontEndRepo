@@ -27,7 +27,6 @@ import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
 import Landing from './Landing Page/Landing.js';
-import FAQs from './Landing Page/FAQs.js';
 import WelcomePage from './WelcomePage';
 // MAPPING
 import AddLocation from './Mapping/components/AddLocation.js';
@@ -179,7 +178,7 @@ function App() {
             <Route path="/LoginIcon" element={<LoginIcon />} />
             <Route path="/Footer" element={<Footer />} />
             <Route path="/Change Password" element={<SettingsPass />} />
-            <Route path="/FAQs" element={<FAQs />} />
+            <Route path="/FAQs" element={<Help />} />
             <Route path="/Soon" element={<Construct />} />
             <Route path="/truck-tracking" element={<TruckTracker />} />
             <Route
